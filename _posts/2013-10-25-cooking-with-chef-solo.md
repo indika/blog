@@ -3,10 +3,11 @@ layout: post
 title: Cooking a Web-Server with Chef-Solo [DRAFT]
 description: "Cooking a Web-Server with Chef-Solo"
 modified: 2013-10-25
-tags: chef, publishing
+tags: [chef, cooking, web-servers, solo]
 comments: false
 share: true
 ---
+
 
 
 Stasis is bad. There is no agility about statis.
@@ -239,6 +240,12 @@ In the ideal world, Chef can and will completely determine the architecture of t
 ## Configuring SSH
 
 SSH is pretty much the standard when it comes to open a communication channel with a server. I'll assume you know how to set it up. Using a non-default SSH port is a good idea to deter random hackers.
+
+There is a bit of debate on whether it is good idea to use the default port or not.
+
+[Bad Idea](http://www.adayinthelifeof.nl/2012/03/12/why-putting-ssh-on-another-port-than-22-is-bad-idea)
+[Good Idea](http://www.danielmiessler.com/blog/putting-ssh-another-port-good-idea)
+
 
 
 ## Remotely installing Chef
