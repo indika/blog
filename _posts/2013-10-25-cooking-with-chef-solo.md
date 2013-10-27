@@ -24,7 +24,7 @@ and while I despise learning DSLs because of the shortness of their lifespans,
 I find the process a necessity now.
 
 If you are like me, and like to experiment, then often things can go fubar.
-It is comforting and encouranging to know that everything can be reconstructed in 15 minutes.
+It is comforting and encouraging to know that everything can be reconstructed in 15 minutes.
 
 
 
