@@ -340,6 +340,24 @@ Don't really need them.
 The way I have set things up is that I have private and example data bags. And I can switch between them with a symbolic link. This is so that I can share this repository on github.
 
 
+## Code Snippets
+
+Syntax highlighting via Pygments
+
+{% highlight css %}
+#container {
+  float: left;
+  margin: 0 -240px 0 0;
+  width: 100%;
+}
+{% endhighlight %}
+
+Non Pygments code example
+
+    <div id="awesome">
+        <p>This is great isn't it?</p>
+    </div>
+
 
 
 # Next
