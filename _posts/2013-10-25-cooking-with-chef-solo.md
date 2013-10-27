@@ -230,7 +230,7 @@ solo.rb found, but since knife-solo v0.3.0 it is not used any more
 
 # Bootstrapping the Server
 
-In the ideal world, Chef can and will completely determine the architecture of the server. However, when it comes to practicalities, the server still needs to be bootstrapped before it can be cooke. It broadly involves:
+In the ideal world, Chef can and will completely determine the architecture of the server. However, when it comes to practicalities, the server still needs to be bootstrapped before it can be cook. It broadly involves:
 
 - setting up a SSH connection, so that you  (meaning the software running on your computer) can securely communicate with it, and
 - installing stuff like unattended upgrades, and any obviously required packages (I'm not going to be idealistic here on not having dependencies outside of the Chef configuration)
@@ -239,13 +239,12 @@ In the ideal world, Chef can and will completely determine the architecture of t
 
 ## Configuring SSH
 
-SSH is pretty much the standard when it comes to open a communication channel with a server. I'll assume you know how to set it up. Using a non-default SSH port is a good idea to deter random hackers.
+SSH is pretty much the standard when it comes to open a communication channel with a server.
+I'll assume you know how to set it up.
 
-There is a bit of debate on whether it is good idea to use the default port or not.
-
-[Bad Idea](http://www.adayinthelifeof.nl/2012/03/12/why-putting-ssh-on-another-port-than-22-is-bad-idea)
-[Good Idea](http://www.danielmiessler.com/blog/putting-ssh-another-port-good-idea)
-
+There has been a recent debate on whether it is [a bad idea](http://www.adayinthelifeof.nl/2012/03/12/why-putting-ssh-on-another-port-than-22-is-bad-idea) or
+[a good idea](http://www.danielmiessler.com/blog/putting-ssh-another-port-good-idea)
+to use the a non-default port. I prefer to use a non-default port because I cannot deal with the noise of random hackers.
 
 
 ## Remotely installing Chef
