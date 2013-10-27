@@ -90,27 +90,22 @@ librarian-chef install --clean
 
 ## ~/.chef
 
-This is the default location where Chef looks for machine specific settings. This folder is not on the server.
-
-Create a knife.rb configuration file. Mine was simple until I upgrading knife-solo.
+This is the default location where Chef / Knife (?) looks for machine specific settings. This folder is not on the server, as I initially imagined. This is my knife.rb configuration file.
 
 {% highlight ruby %}
 knife[:provisioning_path] = "/home/root/solo"
 
 cookbook_path [
-    "../common-cookbooks",
     './cookbooks',
-    "site-cookbooks"]
+    'site-cookbooks']
 
-role_path     nil
+role_path     "roles"
 data_bag_path "data_bags"
 encrypted_data_bag_secret "#{ENV['HOME']}/.chef/motion_secret"
 {% endhighlight %}
 
     
-This is necessary for knife solo because Chef was built to run on it's own dedicated server.
-
-
+This file might be necessary for knife solo because Chef was built to run on it's own dedicated server.
 
 
 
