@@ -9,7 +9,11 @@ share: true
 ---
 
 
-Stasis is bad. Stasis is certainly not agile.
+Stasis is bad.  It is certainly not agile. It implies unchangeability and not the lack of volatility.
+
+perhaps without stasis, there cannot be dependence.
+
+statis can be good. stasis can mean dependence. not volatility.
 
 This is a recipe on how to use Chef recipes.
 This is my Ruby naive understanding of Chef.
@@ -21,7 +25,7 @@ If you are like me, and like to experiment, then often things can go fubar. Howe
 
 
 # Concepts
-Cooking is simple, however, the concepts and the roles they play were the biggest stumbling block I experienced.
+Cooking is simple. chef offers a means of declaring a server architecture, while being agnostic to the underlying platform. simple. however, the concepts and the roles they play were the biggest stumbling block I experienced.
 
 
 Chef was built to distribute to multiple nodes
@@ -69,7 +73,7 @@ Use Gem to install Bundler
 gem install bundler
 {% endhighlight %}
 
-    
+
 
 
 Create a gem file
@@ -82,11 +86,11 @@ bundle install
 {% highlight bash %}
 librarian-chef install --clean
 {% endhighlight %}
-    
 
 
 
-# The Kitchen
+
+# Creating a Kitchen
 
 ## ~/.chef
 
@@ -104,7 +108,7 @@ data_bag_path "data_bags"
 encrypted_data_bag_secret "#{ENV['HOME']}/.chef/motion_secret"
 {% endhighlight %}
 
-    
+
 This file might be necessary for knife solo because Chef was built to run on it's own dedicated server.
 
 
@@ -143,7 +147,7 @@ And I do know that it simply just work.
 #### A workspace for the Kitchen
 
 Choose a directory and use Knife to create a scaffolding. {% highlight bash %} knife solo init . {% endhighlight %}
-   
+
 
 ### Cheffile
 
@@ -208,7 +212,7 @@ Your kitchen should look like:
 └── site-cookbooks
 │   └── - cookbooks that you have written
         -
-     
+
 {% endhighlight %}
 
 
@@ -297,7 +301,7 @@ entity
 ├── resources
 └── templates
     └── default
-     
+
 {% endhighlight %}
 
 
@@ -319,7 +323,7 @@ node['dvm']['user_installs'] = [
     'rubies'        => ['1.9.2', '1.8.7']
   }
 ]
-     
+
 {% endhighlight %}
 
 
@@ -354,10 +358,10 @@ Use openssl to generate an encryption key.
 {% highlight bash %}
 
 openssl rand -base64 512
-     
+
 {% endhighlight %}
 
-    
+
 
 And use this key to encrypt the data bag.
 
@@ -368,7 +372,7 @@ knife solo data bag create indika bob
 --data-bag-path data_bags
 -e vim
 --json-file data_bags/indika/_bob.json
-     
+
 {% endhighlight %}
 
 
@@ -401,7 +405,7 @@ item = Chef::EncryptedDataBagItem.load("indika", "bob", secret)
 item = data_bag_item('indika', 'bob')
 puts item['password']
 url = "https://#{item['password']}/App.config"
-     
+
 {% endhighlight %}
 
 
