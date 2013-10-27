@@ -9,14 +9,16 @@ share: true
 ---
 
 
+Stasis is bad.
+
 This is a recipe on how to use Chef recipes.
 This is my Ruby naive understanding of Chef.
 
 Cooking with Chef feels like learning a DSL, and while I despise learning DSLs because of the shortness of their lifespans, I find cooking with Chef an necessity when it comes to managing a server.
 
-The advantages is that if your server goes FOOBAR, you can easily start from scratch and get up and running again in 20minutes.
+If you are like me, and like to experiment, then often things can go fubar. However, it's comforting to then experiment when you know you can get your system back up and running from scratch in 15minutes.
 
-Statis is bad.
+
 
 # Concepts
 Cooking is simple, however, the concepts and the roles they play were the biggest stumbling block I experienced.
