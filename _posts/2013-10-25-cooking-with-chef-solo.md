@@ -240,9 +240,13 @@ SSH is pretty much the standard when it comes to open a communication channel wi
 
 ## Remotely installing Chef
 
-    knife solo prepare root@motion -p 2222
 
-    … Setting up chef (11.6.2-1.ubuntu.12.04)
+{% highlight bash %}
+knife solo prepare root@motion -p 2222
+
+… Setting up chef (11.6.2-1.ubuntu.12.04)
+{% endhighlight %}
+
 
 This installs Ruby, RubyGems and Chef on target mach. Chef needs to be installed on the server
 
@@ -251,8 +255,12 @@ This installs Ruby, RubyGems and Chef on target mach. Chef needs to be installed
 
 Vulnerable pieces should be encrypted. More about this listen. For now, simply generate a secret key and upload it via SCP.
 
-    openssl rand -base64 512 > ~/.chef/motion_secret
-    scp -P 2222 ~/.chef/motion_secret root@motion:/root/.chef/motion_secret
+
+{% highlight bash %}
+openssl rand -base64 512 > ~/.chef/motion_secret
+scp -P 2222 ~/.chef/motion_secret root@motion:/root/.chef/motion_secret
+{% endhighlight %}
+
 
 
 
@@ -269,26 +277,36 @@ It contains of a bunch of node specific data. The most pertinent is the run list
 Create a cookbook
 
 Then create a cookbook
-    knife cookbook create ninjacircles -r md
 
 
-    entity
-    ├── CHANGELOG.md
-    ├── README.md
-    ├── attributes
-    ├── definitions
-    ├── files
-    │   └── default
-    ├── libraries
-    ├── metadata.rb
-    │   └── - information about the creator
-    │       - has some depends statements
-    ├── providers
-    ├── recipes
-    │   └── default.rb
-    ├── resources
-    └── templates
-        └── default
+{% highlight bash %}
+knife cookbook create entity -r md
+{% endhighlight %}
+
+
+
+{% highlight text %}
+entity
+├── CHANGELOG.md
+├── README.md
+├── attributes
+├── definitions
+├── files
+│   └── default
+├── libraries
+├── metadata.rb
+│   └── - information about the creator
+│       - has some depends statements
+├── providers
+├── recipes
+│   └── default.rb
+├── resources
+└── templates
+    └── default
+     
+{% endhighlight %}
+
+
 
 
 
@@ -299,12 +317,18 @@ include recipe[rvm::user] in your run_list and add a user hash to the user_insta
 
 eg
 
-    node['rvm']['user_installs'] = [
-      { 'user'          => 'wiggle bottom',
-        'default_ruby'  => 'rbx',
-        'rubies'        => ['1.9.2', '1.8.7']
-      }
-    ]
+{% highlight json %}
+
+node['dvm']['user_installs'] = [
+  { 'user'          => 'wiggle bottom',
+    'default_ruby'  => 'rbx',
+    'rubies'        => ['1.9.2', '1.8.7']
+  }
+]
+     
+{% endhighlight %}
+
+
 
 
 
