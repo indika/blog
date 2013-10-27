@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Cooking a Web-Server with Chef-Solo
+title: Cooking a Web-Server with Chef-Solo [DRAFT]
 description: "Cooking a Web-Servers with Chef-Solo"
 modified: 2013-10-25
 tags: chef, publishing
@@ -9,7 +9,7 @@ share: true
 ---
 
 
-Stasis is bad.
+Stasis is bad. Stasis is certainly not agile.
 
 This is a recipe on how to use Chef recipes.
 This is my Ruby naive understanding of Chef.
