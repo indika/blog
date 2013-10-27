@@ -13,7 +13,9 @@ This is my Ruby naive understanding of Chef.
 
 Cooking with Chef feels like learning a DSL, and while I despise learning DSLs because of the shortness of their lifespans, I find cooking with Chef an necessity when it comes to managing a server.
 
+The advantages is that if your server goes FOOBAR, you can easily start from scratch and get up and running again in 20minutes.
 
+Statis is bad.
 
 # Concepts
 Cooking is simple, however, the concepts and the roles they play were the biggest stumbling block I experienced.
@@ -70,12 +72,19 @@ Create a Cheffile
 
 This is the default location where Chef looks for machine specific settings. This folder is not on the server.
 
-Create a knife.rb configuration file. Mine is simple:
+Create a knife.rb configuration file. Mine was simple until I upgrading knife-solo.
 
+    knife[:provisioning_path] = "/home/root/solo"
+    
     cookbook_path [
-        './cookbooks'
-    ]
-
+        "../common-cookbooks",
+        './cookbooks',
+        "site-cookbooks"]
+    
+    role_path     nil
+    data_bag_path "data_bags"
+    encrypted_data_bag_secret "#{ENV['HOME']}/.chef/motion_secret"
+    
 This is necessary for knife solo because Chef was built to run on it's own dedicated server.
 
 
@@ -166,6 +175,9 @@ Your kitchen should look like:
     │   └── - cookbooks that you have written
             -
 
+### Solo.rb
+This seems to be deprecated.
+solo.rb found, but since knife-solo v0.3.0 it is not used any more
 
 
 
@@ -214,7 +226,7 @@ It contains of a bunch of node specific data. The most pertinent is the run list
 Create a cookbook
 
 Then create a cookbook
-    knife cookbook create smartmontools -r md
+    knife cookbook create ninjacircles -r md
 
 
     entity
@@ -256,6 +268,10 @@ eg
 
 
 # Databags
+
+Knife solo uploads cookbooks, roles and data bags onto the target node.
+This was not obvious to me at first.
+It was possible that it would only sending instructions.
 
 Databags are annoying, yet feel necessary. Errors only become apparent during the cook. However, they seem important and my struggled attempt to justify them are as follows:
 
@@ -313,68 +329,9 @@ I suppose the first name refers to the site-cookbook - well it could.
 
 # Roles
 
-About Roles
 
-Read here:
-    http://docs.opscode.com/essentials_roles.html
+Can define using JSON or the Ruby DSL
 
-
-Roles are used to define certain patterns.
-These patterns are scoped at an organization.
-And can typically be applied to more than one node.
-
-Role
-    has attributes
-    a run list[]
-
-Node
-    has roles assigned to it
-
-    A role can be run against a node
-        when this happens:
-        the node's configuration details,
-        are compared against the attributes of the role
-
-        then the contents of the role's run list
-        are applied to the node's configuration details
-
-    A merge of attributes happen
-
-
-Attribute merging
-    precedence starts to matter
-
-
-A role is a way to define certain patterns and processes that exist across nodes in an organization as belonging to a single job function.
-
-Each role consists of zero (or more) attributes and a run list.
-
-Each node can have zero (or more) roles assigned to it.
-
-When a role is run against a node, the configuration details of that node are compared against the attributes of the role, and then the contents of that role’s run list are applied to the node’s configuration details. When a chef-client runs, it merges its own attributes and run lists with those contained within each assigned role.
-
-
-Role Attributes
-An attribute can be defined in a role and then used to override the default settings on a node. When a role is applied during a chef-client run, these attributes are compared to the attributes that are already present on the node. When the role attributes take precedence over the default attributes, the chef-client will apply those new settings and values during the chef-client run on the node.
-
-A role attribute can only be set to be a default attribute or an override attribute. A role attribute cannot be set to be a normal attribute. Use the default_attribute and override_attribute methods in the Ruby DSL file or the default_attributes and override_attributes hashes in a JSON data file.
-
-Note
-Attributes can be configured in cookbooks (attribute files and recipes), roles, and environments. In addition, Ohai collects attribute data about each node at the start of the chef-client run. See http://docs.opscode.com/chef_overview_attributes.html for more information about how all of these attributes fit together.
-
-Attribute Types
-There are two types of attributes that can be used with roles:
-
-Attribute Type	Description
-
-each chef-client run has a start
-    during this time the default attribute is automatically reset
-
-default	A default attribute is automatically reset at the start of every chef-client run and has the lowest attribute precedence. A cookbook should be authored to use default attributes as often as possible.
-override	An override attribute is automatically reset at the start of every chef-client run and has a higher attribute precedence than default, force_default, and normal attributes. An override attribute is most often specified in a recipe, but can be specified in an attribute file, for a role, and/or for an environment. A cookbook should be authored so that it uses override attributes only when required.
-
-Attribute Persistence
-At the beginning of a chef-client run, all default, override, and automatic attributes are reset. The chef-client rebuilds them using data collected by Ohai at the beginning of the chef-client run and by attributes that are defined in cookbooks, roles, and environments. Normal attributes are never reset. All attributes are then merged and applied to the node according to attribute precedence. At the conclusion of the chef-client run, all default, override, and automatic attributes disappear, leaving only a collection of normal attributes that will persist until the next chef-client run.
 
 
 ## My config
@@ -385,6 +342,11 @@ The way I have set things up is that I have private and example data bags. And I
 
 
 # Next
+
+
+Somethings are harder to cook than others.
+The Ruby community seems to be very splintered.
+
 
 Ansible and Salt exist. So does Puppet.
 What about OpenStack. People talk about OpenStack on OpenStack.
