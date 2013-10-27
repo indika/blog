@@ -44,7 +44,7 @@ Use RVM to manage different versions of Ruby.
 Have some faith and get a stable version of ruby:
 
 
-{% highlight css %}
+{% highlight bash %}
 \curl -L https://get.rvm.io | bash -s stable --ruby
     curl -L get.rvm.io | bash -s stable
 {% endhighlight %}
@@ -55,8 +55,7 @@ It then asks you for your root password so that it can make changes to openssl.
 
 And then you have to source it.
 
-{% highlight css %}
-\curl -L https://get.rvm.io | bash -s stable --ruby
+{% highlight bash %}
 source /Users/indika/.rvm/scripts/rvm
 {% endhighlight %}
 
@@ -64,7 +63,11 @@ source /Users/indika/.rvm/scripts/rvm
 
 Use Gem to install Bundler
 
-    gem install bundler
+{% highlight bash %}
+gem install bundler
+{% endhighlight %}
+
+    
 
 
 Create a gem file
