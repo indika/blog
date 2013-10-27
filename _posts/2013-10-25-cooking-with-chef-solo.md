@@ -145,11 +145,8 @@ And I do know that it simply just work.
 
 #### A workspace for the Kitchen
 
-Choose a directory and use Knife to create a scaffolding
-    knife solo init .
-
-
-
+Choose a directory and use Knife to create a scaffolding. {% highlight bash %} knife solo init . {% endhighlight %}
+   
 
 ### Cheffile
 
