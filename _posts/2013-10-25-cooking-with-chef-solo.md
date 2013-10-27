@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Cooking a Web-Server with Chef-Solo [DRAFT]
-description: "Cooking a Web-Servers with Chef-Solo"
+description: "Cooking a Web-Server with Chef-Solo"
 modified: 2013-10-25
 tags: chef, publishing
 comments: false
@@ -15,12 +15,13 @@ When I first SSHed into a remote box on the other side of the world, I felt like
 
 Cooking with Chef feels like learning a DSL, and while I despise learning DSLs because of the shortness of their lifespans, I find cooking with Chef an necessity when it comes to managing a server.
 
-If you are like me, and like to experiment, then often things can go fubar. However, it's comforting to then experiment when you know you can get your system back up and running from scratch in 15minutes.
+If you are like me, and like to experiment, then often things can go fubar. However, it's comforting to then experiment when you know you can get your system back up and running from scratch in 15 minutes.
 
 
 
 # Concepts
-Cooking is simple. chef offers a means of declaring a server architecture, while being agnostic to the underlying platform. simple. however, the concepts and the roles they play were the biggest stumbling block I experienced.
+Cooking is simple. Chef offers a means of declaring a server architecture, while being agnostic to the underlying platform.
+Simple. however, the concepts and the roles they play were the biggest stumbling block I experienced.
 
 
 Chef was built to distribute to multiple nodes
