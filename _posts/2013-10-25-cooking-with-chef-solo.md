@@ -9,14 +9,9 @@ share: true
 ---
 
 
-Stasis is bad.  It is certainly not agile. It implies unchangeability and not the lack of volatility.
+Stasis is bad. There is no agility about statis. It gives me the feeling more of unchangeability rathen than the lack of volatility.
 
-perhaps without stasis, there cannot be dependence.
-
-statis can be good. stasis can mean dependence. not volatility.
-
-This is a recipe on how to use Chef recipes.
-This is my Ruby naive understanding of Chef.
+When I first SSHed into a remote box on the other side of the world, I felt like a hacker. I would pain-stakingly wait the 250ms RTT and configure the box. I had to. If I did not, everything would not work. Over time, the server fell into statis, and I would not want to change anything with the fear of breaking my configuration.
 
 Cooking with Chef feels like learning a DSL, and while I despise learning DSLs because of the shortness of their lifespans, I find cooking with Chef an necessity when it comes to managing a server.
 
