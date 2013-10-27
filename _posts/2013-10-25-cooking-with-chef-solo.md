@@ -330,7 +330,8 @@ I suppose the first name refers to the site-cookbook - well it could.
 # Roles
 
 
-Can define using JSON or the Ruby DSL
+Can define using JSON or the Ruby DSL.
+Don't really need them.
 
 
 
