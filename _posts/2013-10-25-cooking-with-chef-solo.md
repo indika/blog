@@ -1,11 +1,12 @@
-Title: Cooking a Web-Server with Chef-Solo
-Date: 2013-10-12 10:20
-Category: Ruby, Python
-Tags: chef, publishing
-Slug: cooking-with-chef
-Author: Indika Piyasena
-Summary: Cooking a Web-Servers with Chef-Solo
-
+---
+layout: post
+title: Cooking a Web-Server with Chef-Solo
+description: "Cooking a Web-Servers with Chef-Solo"
+modified: 2013-10-25
+tags: chef, publishing
+comments: false
+share: true
+---
 
 
 This is a recipe on how to use Chef recipes.
@@ -42,14 +43,23 @@ Use RVM to manage different versions of Ruby.
 
 Have some faith and get a stable version of ruby:
 
-    \curl -L https://get.rvm.io | bash -s stable --ruby
-        curl -L get.rvm.io | bash -s stable
+
+{% highlight css %}
+\curl -L https://get.rvm.io | bash -s stable --ruby
+    curl -L get.rvm.io | bash -s stable
+{% endhighlight %}
+
+
 
 It then asks you for your root password so that it can make changes to openssl.
 
 And then you have to source it.
 
-    source /Users/indika/.rvm/scripts/rvm
+{% highlight css %}
+\curl -L https://get.rvm.io | bash -s stable --ruby
+source /Users/indika/.rvm/scripts/rvm
+{% endhighlight %}
+
 
 
 Use Gem to install Bundler
