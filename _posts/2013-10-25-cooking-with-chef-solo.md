@@ -131,7 +131,11 @@ gem 'foodcritic'
 
 And then use Bundler to obtain these dependencies.
 
-    bundle install
+
+{% highlight bash %}
+bundle install
+{% endhighlight %}
+
 
 I'm not sure exactly why Bundler is better than Gem to manage dependencies.
 But I do know Bundler can maintain the specific version number required for the application (Chef).
@@ -161,45 +165,58 @@ I started with Librarian-Chef and currently see no good reason to change.
 
 Create the scaffolding for a Cheffile
 
-    librarian-chef init
+
+{% highlight bash %}
+librarian-chef init
+{% endhighlight %}
+
+
 
 
 
 This is my Cheffile
 
-    site 'http://community.opscode.com/api/v1'
+{% highlight ruby %}
+site 'http://community.opscode.com/api/v1'
 
-    cookbook 'runit'
-    cookbook 'cron', :git => 'git://github.com/opscode-cookbooks/cron.git'
-    cookbook 'database', :git => 'git://github.com/opscode-cookbooks/database.git'
-    cookbook 'logwatch', :git => 'git://github.com/opscode-cookbooks/logwatch.git'
-    cookbook 'nginx', :git => 'git://github.com/opscode-cookbooks/nginx.git'
-    cookbook 'phantomjs', :git => 'git://github.com/customink-webops/phantomjs.git'
-    cookbook 'python', :git => 'git://github.com/opscode-cookbooks/python.git'
-    cookbook 'postgresql', :git => 'git://github.com/opscode-cookbooks/postgresql.git'
-    cookbook 'user', :git => 'git://github.com/fnichol/chef-user.git'
+cookbook 'runit'
+cookbook 'cron', :git => 'git://github.com/opscode-cookbooks/cron.git'
+cookbook 'database', :git => 'git://github.com/opscode-cookbooks/database.git'
+cookbook 'logwatch', :git => 'git://github.com/opscode-cookbooks/logwatch.git'
+cookbook 'nginx', :git => 'git://github.com/opscode-cookbooks/nginx.git'
+cookbook 'phantomjs', :git => 'git://github.com/customink-webops/phantomjs.git'
+cookbook 'python', :git => 'git://github.com/opscode-cookbooks/python.git'
+cookbook 'postgresql', :git => 'git://github.com/opscode-cookbooks/postgresql.git'
+cookbook 'user', :git => 'git://github.com/fnichol/chef-user.git'
+{% endhighlight %}
+
 
 
 ## Structure of the Kitchen
 
 Your kitchen should look like:
 
-    .
-    ├── Gemfile
-    ├── Gemfile.lock
-    ├── cookbooks
-    │   └── - public cookbooks get loaded in here
-    │       -
-    ├── data_bags
-    ├── nodes
-    │   └── - server configuration files
-    │       -
-    ├── roles
-    │   └── - server configuration files
-    │       - i don't know what these are yet
-    └── site-cookbooks
-    │   └── - cookbooks that you have written
-            -
+
+{% highlight text %}
+.
+├── Gemfile
+├── Gemfile.lock
+├── cookbooks
+│   └── - public cookbooks get loaded in here
+│       -
+├── data_bags
+├── nodes
+│   └── - server configuration files
+│       -
+├── roles
+│   └── - server configuration files
+│       - i don't know what these are yet
+└── site-cookbooks
+│   └── - cookbooks that you have written
+        -
+     
+{% endhighlight %}
+
 
 ### Solo.rb
 This seems to be deprecated.
