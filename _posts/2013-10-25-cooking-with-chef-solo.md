@@ -160,10 +160,10 @@ Choose a directory and use Knife to create a scaffolding. {% highlight bash %} k
 Cookbooks contain recipes that instruct Chef how to do stuff.
 One of the reasons Chef appeals to me the most is because of the wealth of open source cookbooks available.
 
-I've noticed three different managers for cookbooks
-- Librarian-Chef
-- Berkshelf
-- knife-github-cookbooks
+I've noticed three different managers for cookbooks:
+* Librarian-Chef
+* Berkshelf
+* knife-github-cookbooks
 
 I started with Librarian-Chef and currently see no good reason to change.
 
@@ -202,23 +202,20 @@ Your kitchen should look like:
 
 
 {% highlight text %}
-.
 ├── Gemfile
 ├── Gemfile.lock
 ├── cookbooks
 │   └── - public cookbooks get loaded in here
 │       -
 ├── data_bags
+│   └── - secret stuff
 ├── nodes
-│   └── - server configuration files
-│       -
+│   └── - configuration of particular nodes
 ├── roles
-│   └── - server configuration files
-│       - i don't know what these are yet
+│   └── - common configurations that can be applied
+│         across multiple nodes
 └── site-cookbooks
-│   └── - cookbooks that you have written
-        -
-
+    └── - cookbooks that you have written
 {% endhighlight %}
 
 
@@ -239,7 +236,7 @@ In the ideal world, Chef can and will completely determine the architecture of t
 
 ## Configuring SSH
 
-SSH is pretty much the standard when it comes to open a communication channel with a server.
+SSH is pretty much the standard when it comes to opening a secure communication channel with a server.
 I'll assume you know how to set it up.
 
 There has been a recent debate on whether it is [a bad idea](http://www.adayinthelifeof.nl/2012/03/12/why-putting-ssh-on-another-port-than-22-is-bad-idea) or
