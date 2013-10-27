@@ -9,13 +9,22 @@ share: true
 ---
 
 
-Stasis is bad. There is no agility about statis. It gives me the feeling more of unchangeability rathen than the lack of volatility.
+Stasis is bad. There is no agility about statis.
+When a component falls into statis, I'll let it be, and it'll carry on doing what it does.
+Until it breaks, that is. Everything falls apart until it can be fixed.
 
-When I first SSHed into a remote box on the other side of the world, I felt like a hacker. I would pain-stakingly wait the 250ms RTT and configure the box. I had to. If I did not, everything would not work. Over time, the server fell into statis, and I would not want to change anything with the fear of breaking my configuration.
+When I first SSH'd into a remote box on the other side of the world,
+I felt like a hacker. I would pain-stakingly wait the 250ms RTT and configure the box. I had to.
+If I did not, everything would not work. Over time, the server fell into statis, and then it broke.
+Development stopped.
 
-Cooking with Chef feels like learning a DSL, and while I despise learning DSLs because of the shortness of their lifespans, I find cooking with Chef an necessity when it comes to managing a server.
+Chef offers a means to declare your server architecture, and cook it.
+Learning to cook with Chef feels like learning a DSL,
+and while I despise learning DSLs because of the shortness of their lifespans,
+I find the process a necessity now.
 
-If you are like me, and like to experiment, then often things can go fubar. However, it's comforting to then experiment when you know you can get your system back up and running from scratch in 15 minutes.
+If you are like me, and like to experiment, then often things can go fubar.
+It is comforting and encouranging to know that everything can be reconstructed in 15 minutes.
 
 
 
