@@ -16,7 +16,7 @@ Until it breaks, that is. Everything falls apart until it can be fixed.
 When I first SSH'd into a remote box on the other side of the world,
 I felt like a hacker. I would pain-stakingly wait the 250ms RTT and configure the box. I had to.
 If I did not, everything would not work. Over time, the server fell into statis, and then it broke.
-Development stopped.
+Development stopped. Growth stopped. Changed stopped.
 
 Chef offers a means to declare your server architecture, and cook it.
 Learning to cook with Chef feels like learning a DSL,
