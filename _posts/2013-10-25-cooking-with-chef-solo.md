@@ -72,11 +72,16 @@ gem install bundler
 
 Create a gem file
 
-    bundle install
+{% highlight bash %}
+bundle install
+{% endhighlight %}
 
-Create a Cheffile
 
-    librarian-chef install --clean
+{% highlight bash %}
+librarian-chef install --clean
+{% endhighlight %}
+    
+
 
 
 # The Kitchen
@@ -87,16 +92,19 @@ This is the default location where Chef looks for machine specific settings. Thi
 
 Create a knife.rb configuration file. Mine was simple until I upgrading knife-solo.
 
-    knife[:provisioning_path] = "/home/root/solo"
-    
-    cookbook_path [
-        "../common-cookbooks",
-        './cookbooks',
-        "site-cookbooks"]
-    
-    role_path     nil
-    data_bag_path "data_bags"
-    encrypted_data_bag_secret "#{ENV['HOME']}/.chef/motion_secret"
+{% highlight ruby %}
+knife[:provisioning_path] = "/home/root/solo"
+
+cookbook_path [
+    "../common-cookbooks",
+    './cookbooks',
+    "site-cookbooks"]
+
+role_path     nil
+data_bag_path "data_bags"
+encrypted_data_bag_secret "#{ENV['HOME']}/.chef/motion_secret"
+{% endhighlight %}
+
     
 This is necessary for knife solo because Chef was built to run on it's own dedicated server.
 
@@ -108,13 +116,18 @@ This is necessary for knife solo because Chef was built to run on it's own dedic
 
 Use a Gemfile to specify the dependencies for Chef.
 
-    source 'https://rubygems.org'
 
-    gem 'knife-solo'
-    gem 'knife-solo_data_bag'
-    gem 'librarian'
-    gem 'multi_json'
-    gem 'foodcritic'
+{% highlight ruby %}
+source 'https://rubygems.org'
+
+gem 'knife-solo'
+gem 'knife-solo_data_bag'
+gem 'librarian'
+gem 'multi_json'
+gem 'foodcritic'
+{% endhighlight %}
+
+
 
 And then use Bundler to obtain these dependencies.
 
