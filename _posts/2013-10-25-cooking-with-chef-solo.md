@@ -317,7 +317,7 @@ include recipe[rvm::user] in your run_list and add a user hash to the user_insta
 
 eg
 
-{% highlight json %}
+{% highlight ruby %}
 
 node['dvm']['user_installs'] = [
   { 'user'          => 'wiggle bottom',
@@ -357,15 +357,28 @@ An annoying point to bear in mind is, the ID of the data bag must match the name
 
 Use openssl to generate an encryption key.
 
-    openssl rand -base64 512
+{% highlight bash %}
+
+openssl rand -base64 512
+     
+{% endhighlight %}
+
+    
 
 And use this key to encrypt the data bag.
 
-    knife solo data bag create indika bob
-    --secret-file /Users/indika/.chef/encrypted_data_bag_secret
-    --data-bag-path data_bags
-    -e vim
-    --json-file data_bags/indika/_bob.json
+{% highlight bash %}
+
+knife solo data bag create indika bob
+--secret-file /Users/indika/.chef/encrypted_data_bag_secret
+--data-bag-path data_bags
+-e vim
+--json-file data_bags/indika/_bob.json
+     
+{% endhighlight %}
+
+
+
 
 - It takes a secret file.
 - A path to place the bag
@@ -385,13 +398,19 @@ the folder, and the file name.
 
 I suppose the first name refers to the site-cookbook - well it could.
 
-    secret = Chef::EncryptedDataBagItem
-    .load_secret("/root/.chef/motion_secret")
+{% highlight ruby %}
 
-    item = Chef::EncryptedDataBagItem.load("indika", "bob", secret)
-    item = data_bag_item('indika', 'bob')
-    puts item['password']
-    url = "https://#{item['password']}/App.config"
+secret = Chef::EncryptedDataBagItem
+.load_secret("/root/.chef/motion_secret")
+
+item = Chef::EncryptedDataBagItem.load("indika", "bob", secret)
+item = data_bag_item('indika', 'bob')
+puts item['password']
+url = "https://#{item['password']}/App.config"
+     
+{% endhighlight %}
+
+
 
 
 # Roles
@@ -402,28 +421,7 @@ Don't really need them.
 
 
 
-## My config
 
-The way I have set things up is that I have private and example data bags. And I can switch between them with a symbolic link. This is so that I can share this repository on github.
-
-
-## Code Snippets
-
-Syntax highlighting via Pygments
-
-{% highlight css %}
-#container {
-  float: left;
-  margin: 0 -240px 0 0;
-  width: 100%;
-}
-{% endhighlight %}
-
-Non Pygments code example
-
-    <div id="awesome">
-        <p>This is great isn't it?</p>
-    </div>
 
 
 
