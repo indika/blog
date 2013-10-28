@@ -161,6 +161,7 @@ Cookbooks contain recipes that instruct Chef how to do stuff.
 One of the reasons Chef appeals to me the most is because of the wealth of open source cookbooks available.
 
 I've noticed three different managers for cookbooks:
+
 * Librarian-Chef
 * Berkshelf
 * knife-github-cookbooks
