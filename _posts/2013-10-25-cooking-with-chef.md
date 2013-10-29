@@ -3,7 +3,7 @@ layout: post
 title: Cooking a Web-Server with Chef-Solo [DRAFT]
 description: "Cooking a Web-Server with Chef-Solo"
 modified: 2013-10-25
-tags: [chef, cooking, web-servers, solo]
+tags: [chef, chef-solo, web server, devops]
 comments: false
 share: true
 ---
@@ -43,7 +43,10 @@ Chef-Solo does not need a dedicated Chef Server
 Chef-Solo is a handy means to putting up a web server. There are a few quirks between full blown Chef and Chef-Solo.
 
 
-Knife is a tool, and it is what you will use to instruct Chef how to do it's job. Knife is a nice name, but a bit counter intuitive.
+Knife is a tool. This part is clear from the metaphor.
+Intuitively, I thought that knife was a tool used by Chef to perform the cook.
+Wrong. Knife is a tool that you use to instruct Chef to do it's job.
+Knife is a nice name, but a bit counter intuitive.
 
 Knife Solo is what you will use to perform solo cooks.
 
@@ -76,27 +79,14 @@ source /Users/indika/.rvm/scripts/rvm
 {% endhighlight %}
 
 
-
-Use Gem to install Bundler
+Bundler is awesome (according to the community.) Use it to manage the gems required for the client side of the Chef.
+Use Gem to obtain Bundler.
 
 {% highlight bash %}
 gem install bundler
 {% endhighlight %}
 
-
-
-
-Create a gem file
-
-{% highlight bash %}
-bundle install
-{% endhighlight %}
-
-
-{% highlight bash %}
-librarian-chef install --clean
-{% endhighlight %}
-
+Now that the Ruby dependencies have been set up, we are ready to create a kitchen.
 
 
 
@@ -286,8 +276,6 @@ It contains of a bunch of node specific data. The most pertinent is the run list
 # Structure of a Cookbook
 
 Create a cookbook
-
-Then create a cookbook
 
 
 {% highlight bash %}
