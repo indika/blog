@@ -92,6 +92,8 @@ Now that the Ruby dependencies have been set up, we are ready to create a kitche
 
 # Creating a Kitchen
 
+The kitchen is the structure you create on the client side before you cook your server.
+
 ## ~/.chef
 
 This is the default location where Chef / Knife (?) looks for machine specific settings. This folder is not on the server, as I initially imagined. This is my knife.rb configuration file.
@@ -112,6 +114,7 @@ encrypted_data_bag_secret "#{ENV['HOME']}/.chef/motion_secret"
 This file might be necessary for knife solo because Chef was built to run on it's own dedicated server.
 
 
+## A workspace for the Kitchen
 
 ### Gemfile
 
@@ -144,7 +147,7 @@ And it also obtains the gems required by the required gems, and so forth.
 And I do know that it simply just work.
 
 
-#### A workspace for the Kitchen
+
 
 Choose a directory and use Knife to create a scaffolding. {% highlight bash %} knife solo init . {% endhighlight %}
 
