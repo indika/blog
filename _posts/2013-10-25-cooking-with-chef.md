@@ -96,7 +96,8 @@ The kitchen is the structure you create on the client side before you cook your 
 
 ## ~/.chef
 
-This is the default location where Chef / Knife (?) looks for machine specific settings. This folder is not on the server, as I initially imagined. This is my knife.rb configuration file.
+This is the default location where Chef / Knife (?) looks for machine specific settings.
+This folder is not on the server, as I initially imagined. This is my *knife.rb* configuration file.
 
 {% highlight ruby %}
 knife[:provisioning_path] = "/home/root/solo"
@@ -118,7 +119,7 @@ This file might be necessary for knife solo because Chef was built to run on it'
 
 Create a directory for your kitchen.
 
-### Gemfile
+### Bundler and the Gemfile
 
 Use a Gemfile to specify the dependencies for Chef.
 
@@ -149,13 +150,33 @@ And it also obtains the gems required by the required gems, and so forth.
 And I do know that it simply just work.
 
 
-### Scaffold
+### Scaffolding
 
 
 Choose a directory and use Knife to create a scaffolding.
 
 {% highlight bash %}
 knife solo init .
+{% endhighlight %}
+
+Your kitchen should look like:
+
+
+{% highlight text %}
+├── Gemfile
+├── Gemfile.lock
+├── cookbooks
+│   └── - public cookbooks get loaded in here
+│       -
+├── data_bags
+│   └── - secret stuff
+├── nodes
+│   └── - configuration of particular nodes
+├── roles
+│   └── - common configurations that can be applied
+│         across multiple nodes
+└── site-cookbooks
+    └── - cookbooks that you have written
 {% endhighlight %}
 
 
@@ -208,27 +229,7 @@ librarian-chef install --clean
 
 
 
-## Structure of the Kitchen
 
-Your kitchen should look like:
-
-
-{% highlight text %}
-├── Gemfile
-├── Gemfile.lock
-├── cookbooks
-│   └── - public cookbooks get loaded in here
-│       -
-├── data_bags
-│   └── - secret stuff
-├── nodes
-│   └── - configuration of particular nodes
-├── roles
-│   └── - common configurations that can be applied
-│         across multiple nodes
-└── site-cookbooks
-    └── - cookbooks that you have written
-{% endhighlight %}
 
 
 ### Solo.rb
