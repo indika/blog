@@ -116,6 +116,8 @@ This file might be necessary for knife solo because Chef was built to run on it'
 
 ## A workspace for the Kitchen
 
+Create a directory for your kitchen.
+
 ### Gemfile
 
 Use a Gemfile to specify the dependencies for Chef.
@@ -147,12 +149,17 @@ And it also obtains the gems required by the required gems, and so forth.
 And I do know that it simply just work.
 
 
+### Scaffold
 
 
-Choose a directory and use Knife to create a scaffolding. {% highlight bash %} knife solo init . {% endhighlight %}
+Choose a directory and use Knife to create a scaffolding.
+
+{% highlight bash %}
+knife solo init .
+{% endhighlight %}
 
 
-### Cheffile
+### Librarian-Chef and the Cheffile
 
 Cookbooks contain recipes that instruct Chef how to do stuff.
 One of the reasons Chef appeals to me the most is because of the wealth of open source cookbooks available.
@@ -190,6 +197,13 @@ cookbook 'phantomjs', :git => 'git://github.com/customink-webops/phantomjs.git'
 cookbook 'python', :git => 'git://github.com/opscode-cookbooks/python.git'
 cookbook 'postgresql', :git => 'git://github.com/opscode-cookbooks/postgresql.git'
 cookbook 'user', :git => 'git://github.com/fnichol/chef-user.git'
+{% endhighlight %}
+
+
+And fetch your cookbooks:
+
+{% highlight bash %}
+librarian-chef install --clean
 {% endhighlight %}
 
 
