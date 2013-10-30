@@ -55,12 +55,10 @@ The server needs to be prepared before you can cook
 
 
 # Ruby
-You will need Ruby. Chef is written in Ruby.
+You will need Ruby. Chef is written in Ruby. RVM is a means to manage different versions of Ruby.
+RVM has been criticed for achieving too much, and that RBEnv is more focussed.
 
-Use RVM to manage different versions of Ruby.
-
-
-Have some faith and get a stable version of ruby:
+RVM works for me for now. Have some faith give curl root priviledges:
 
 
 {% highlight bash %}
@@ -68,9 +66,8 @@ Have some faith and get a stable version of ruby:
     curl -L get.rvm.io | bash -s stable
 {% endhighlight %}
 
+The root priviledges are so that it can make changes to openssl. Should I not be a bit more paranoid here?
 
-
-It then asks you for your root password so that it can make changes to openssl.
 
 And then you have to source it.
 
@@ -240,6 +237,7 @@ solo.rb found, but since knife-solo v0.3.0 it is not used any more
 
 # Bootstrapping the Server
 
+Before you can cook your server, it has to be ready for cooking.
 In the ideal world, Chef can and will completely determine the architecture of the server. However, when it comes to practicalities, the server still needs to be bootstrapped before it can be cook. It broadly involves:
 
 - setting up a SSH connection, so that you  (meaning the software running on your computer) can securely communicate with it, and
@@ -415,15 +413,31 @@ the folder, and the file name.
 
 I suppose the first name refers to the site-cookbook - well it could.
 
+{% highlight json %}
+{
+    "id": "users",
+    "users": [
+        {
+            "user_name": "publish",
+            "tag": "publish",
+            "comment": "User for publishing content",
+            "use_ssh": true,
+            "ssh_key": "secret ssh key"
+        }
+    ]
+}
+{% endhighlight %}
+
+
+
 {% highlight ruby %}
 
-secret = Chef::EncryptedDataBagItem
-.load_secret("/root/.chef/motion_secret")
+secret = Chef::EncryptedDataBagItem.load_secret("/root/.chef/motion_secret")
 
-item = Chef::EncryptedDataBagItem.load("indika", "bob", secret)
-item = data_bag_item('indika', 'bob')
-puts item['password']
-url = "https://#{item['password']}/App.config"
+entity_users_bag = Chef::EncryptedDataBagItem.load("entity", "users", secret)
+entity_users_bag['users'].each do |user_item|
+    puts user_item['user_name']
+end
 
 {% endhighlight %}
 
@@ -432,12 +446,9 @@ url = "https://#{item['password']}/App.config"
 
 # Roles
 
+Roles are a means of applying common functionality to multiple nodes. I'm only cooking one node, so moving on...
 
 Can define using JSON or the Ruby DSL.
-Don't really need them.
-
-
-
 
 
 
