@@ -326,7 +326,8 @@ entity
 
 
 
-## Includes and stuff like this
+## Includes, dependencies and stuff like this
+
 
 include recipe[rvm::user] in your run_list and add a user hash to the user_installs attribute list.
 
@@ -344,7 +345,17 @@ node['dvm']['user_installs'] = [
 {% endhighlight %}
 
 
+According to the official documentation:
+ *Declaring cookbook dependencies is not required with chef-solo.*
 
+
+- include_recipe 'java'
+    this goes somewhere in the cookbook
+
+- depends 'java'
+    in the meta data
+
+But when there is a include_recipe 'java' line in tomcat cookbook, which also requires a depends 'java' line in metadata, the user when trying to install tomcat, will see the understandable error message: "the cookbook java not found". This way actually user can download dependencies on his own (or even with some automatic tool) without actually running recipes, but reading metadata.
 
 
 
