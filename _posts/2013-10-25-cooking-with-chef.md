@@ -386,7 +386,7 @@ Knife solo uploads cookbooks, roles and data bags onto the target node.
 This was not obvious to me at first.
 It was possible that it would only sending instructions.
 
-Databags are annoying, yet feel necessary. Errors only become apparent during the cook. However, they seem important and my struggled attempt to justify them are as follows:
+Databags are annoying, yet they feel necessary. Debugging broken data bags are slow. However, they seem important and my struggled attempt to justify them are as follows:
 
 - The Chef server could be compromised
 - Can manage data bags in source control without plain text
