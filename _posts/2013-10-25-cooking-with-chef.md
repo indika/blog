@@ -363,19 +363,13 @@ If a recipe is included more than once in a recipe, only the first inclusion wil
 
 # Logging
 
+The warning logging works for me, but not the other ones.
 
-try it
-
-Create Exceptions
-
-A recipe can write events to a log file and can cause exceptions using Chef::Log. The levels include debug, info, warn, error, and fatal. For example, to just capture information:
-
-Chef::Log.info('some useful information')
-
-Or to trigger a fatal exception:
-
+Chef::Log.info('FINDMEFINDME')
+Chef::Log.warn('i warn you')
 Chef::Log.fatal!('something bad')
 
+Perhaps I need to increase the logging verbosity.
 
 
 
