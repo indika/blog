@@ -331,33 +331,23 @@ entity
 According to the official documentation:
  *Declaring cookbook dependencies is not required with chef-solo.*
 
+I have seen two types of dependency statements:
 
 - include_recipe 'java'
-    this goes somewhere in the cookbook
+    - include_recipe "apache2::mod_ssl"
+    - you can find this at the top of a recipe
+    - the resources found in that recipe will be inserted (in the same exact order) at that point
 
 - depends 'java'
-    in the meta data
-    can tell the user that the recipe requires java
-    or have some automated tool obtain the recipes
+    - you can find this in the meta data
+    - it can tell the user that the recipe requires java
+    - or have some autometed tool obtain the dependant recipes
 
-This does not really make sense to me.
-It's obvious to me that declaring dependencies in the runlist is important.
-eg:
-    include recipe[rvm::user] in your run_list
+There are also dependency statements in the run_list:
+- "recipe[postgresql::server]",
 
 
 
-Include Recipes
-
-A recipe can include one (or more) recipes located in external cookbooks by using the include_recipe method. When a recipe is included, the resources found in that recipe will be inserted (in the same exact order) at the point where the include_recipe keyword is located. The syntax for including a recipe is like this:
-
-include_recipe "recipe"
-
-For example:
-
-include_recipe "apache2::mod_ssl"
-
-If a recipe is included more than once in a recipe, only the first inclusion will be processed and any subsequent inclusion will be ignored.
 
 
 
@@ -483,7 +473,7 @@ Puppet, Ansible and Salt exist.
 Someone once mentioned  OpenStack on OpenStack.
 Berkshelf is preferred over Librarian.
 
-
+LWRPs seem important.
 
 Nice reading:
 http://docs.opscode.com/essentials_cookbook_recipes.html
