@@ -20,6 +20,7 @@ If you are like me, and like to experiment, then often things can go fubar. Howe
 
 
 
+
 # Concepts
 Cooking is simple, however, the concepts and the roles they play were the biggest stumbling block I experienced.
 
