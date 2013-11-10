@@ -1,28 +1,41 @@
 ---
 layout: post
 title: Cooking a Web-Server with Chef-Solo [DRAFT]
-description: "Cooking a Web-Servers with Chef-Solo"
+description: "Cooking a Web-Server with Chef-Solo"
 modified: 2013-10-25
-tags: chef, publishing
+tags: [chef, chef-solo, web server, devops]
 comments: false
 share: true
 ---
 
 
-Stasis is bad. There is nothing agile about stasis.
 
-This is a recipe on how to use Chef recipes.
-This is my Ruby naive understanding of Chef.
+Stasis is bad. There is nothing agile about statis.
+When a component falls into statis, I'll let it be, and it'll carry on doing what it does.
+Until it breaks, that is. Everything falls apart until it can be fixed.
 
-Cooking with Chef feels like learning a DSL, and while I despise learning DSLs because of the shortness of their lifespans, I find cooking with Chef an necessity when it comes to managing a server.
+When I first SSH'd into a remote box on the other side of the world,
+I felt like a hacker. I would pain-stakingly wait the 250ms RTT and configure the box. I had to.
+If I did not, everything would not work. Over time, the server fell into statis, and then it broke.
+Development stopped. Growth stopped. Changed stopped.
 
-If you are like me, and like to experiment, then often things can go fubar. However, it's comforting to then experiment when you know you can get your system back up and running from scratch in 15minutes.
+Chef offers a means to declare your server architecture, and cook it.
+Learning to cook with Chef feels like learning a DSL.
+You have to learn a language which operates at a layer of abstraction above what you actually want to do.
+I despise learning DSLs because of the shortness of their lifespans,
+however regarding Chef,
+learning it doesn't feel as esoteric as learning Puppet,
+and I find the process a necessity now.
+
+If you are like me, and like to experiment, then often things can go fubar.
+It is comforting and encouraging to know that everything can be reconstructed in 15 minutes.
 
 
 
 
 # Concepts
-Cooking is simple, however, the concepts and the roles they play were the biggest stumbling block I experienced.
+Cooking is simple. Chef offers a means of declaring a server architecture, while being agnostic to the underlying platform.
+Simple. however, the concepts and the roles they play were the biggest stumbling block I experienced.
 
 
 Chef was built to distribute to multiple nodes
@@ -30,7 +43,10 @@ Chef-Solo does not need a dedicated Chef Server
 Chef-Solo is a handy means to putting up a web server. There are a few quirks between full blown Chef and Chef-Solo.
 
 
-Knife is a tool, and it is what you will use to instruct Chef how to do it's job. Knife is a nice name, but a bit counter intuitive.
+Knife is a tool. This part is clear from the metaphor.
+Intuitively, I thought that knife was a tool used by Chef to perform the cook.
+Wrong. Knife is a tool that you use to instruct Chef to do it's job.
+Knife is a nice name, but a bit counter intuitive.
 
 Knife Solo is what you will use to perform solo cooks.
 
@@ -39,12 +55,10 @@ The server needs to be prepared before you can cook
 
 
 # Ruby
-You will need Ruby. Chef is written in Ruby.
+You will need Ruby. Chef is written in Ruby. RVM is a means to manage different versions of Ruby.
+RVM has been criticed for achieving too much, and that RBEnv is more focussed.
 
-Use RVM to manage different versions of Ruby.
-
-
-Have some faith and get a stable version of ruby:
+RVM works for me for now. Have some faith give curl root priviledges:
 
 
 {% highlight bash %}
@@ -52,9 +66,8 @@ Have some faith and get a stable version of ruby:
     curl -L get.rvm.io | bash -s stable
 {% endhighlight %}
 
+The root priviledges are so that it can make changes to openssl. Should I not be a bit more paranoid here?
 
-
-It then asks you for your root password so that it can make changes to openssl.
 
 And then you have to source it.
 
@@ -63,35 +76,25 @@ source /Users/indika/.rvm/scripts/rvm
 {% endhighlight %}
 
 
-
-Use Gem to install Bundler
+Bundler is awesome (according to the community.) Use it to manage the gems required for the client side of the Chef.
+Use Gem to obtain Bundler.
 
 {% highlight bash %}
 gem install bundler
 {% endhighlight %}
 
-    
-
-
-Create a gem file
-
-{% highlight bash %}
-bundle install
-{% endhighlight %}
-
-
-{% highlight bash %}
-librarian-chef install --clean
-{% endhighlight %}
-    
+Now that the Ruby dependencies have been set up, we are ready to create a kitchen.
 
 
 
-# The Kitchen
+# Creating a Kitchen
+
+The kitchen is the structure you create on the client side before you cook your server.
 
 ## ~/.chef
 
-This is the default location where Chef / Knife (?) looks for machine specific settings. This folder is not on the server, as I initially imagined. This is my knife.rb configuration file.
+This is the default location where Chef / Knife (?) looks for machine specific settings.
+This folder is not on the server, as I initially imagined. This is my *knife.rb* configuration file.
 
 {% highlight ruby %}
 knife[:provisioning_path] = "/home/root/solo"
@@ -105,12 +108,15 @@ data_bag_path "data_bags"
 encrypted_data_bag_secret "#{ENV['HOME']}/.chef/motion_secret"
 {% endhighlight %}
 
-    
+
 This file might be necessary for knife solo because Chef was built to run on it's own dedicated server.
 
 
+## A workspace for the Kitchen
 
-### Gemfile
+Create a directory for your kitchen.
+
+### Bundler and the Gemfile
 
 Use a Gemfile to specify the dependencies for Chef.
 
@@ -141,20 +147,46 @@ And it also obtains the gems required by the required gems, and so forth.
 And I do know that it simply just work.
 
 
-#### A workspace for the Kitchen
+### Scaffolding
 
-Choose a directory and use Knife to create a scaffolding. {% highlight bash %} knife solo init . {% endhighlight %}
-   
 
-### Cheffile
+Choose a directory and use Knife to create a scaffolding.
+
+{% highlight bash %}
+knife solo init .
+{% endhighlight %}
+
+Your kitchen should look like:
+
+
+{% highlight text %}
+├── Gemfile
+├── Gemfile.lock
+├── cookbooks
+│   └── - public cookbooks get loaded in here
+│       -
+├── data_bags
+│   └── - secret stuff
+├── nodes
+│   └── - configuration of particular nodes
+├── roles
+│   └── - common configurations that can be applied
+│         across multiple nodes
+└── site-cookbooks
+    └── - cookbooks that you have written
+{% endhighlight %}
+
+
+### Librarian-Chef and the Cheffile
 
 Cookbooks contain recipes that instruct Chef how to do stuff.
 One of the reasons Chef appeals to me the most is because of the wealth of open source cookbooks available.
 
-I've noticed three different managers for cookbooks
-- Librarian-Chef
-- Berkshelf
-- knife-github-cookbooks
+I've noticed three different managers for cookbooks:
+
+* Librarian-Chef
+* Berkshelf
+* knife-github-cookbooks
 
 I started with Librarian-Chef and currently see no good reason to change.
 
@@ -186,31 +218,15 @@ cookbook 'user', :git => 'git://github.com/fnichol/chef-user.git'
 {% endhighlight %}
 
 
+And fetch your cookbooks:
 
-## Structure of the Kitchen
-
-Your kitchen should look like:
-
-
-{% highlight text %}
-.
-├── Gemfile
-├── Gemfile.lock
-├── cookbooks
-│   └── - public cookbooks get loaded in here
-│       -
-├── data_bags
-├── nodes
-│   └── - server configuration files
-│       -
-├── roles
-│   └── - server configuration files
-│       - i don't know what these are yet
-└── site-cookbooks
-│   └── - cookbooks that you have written
-        -
-     
+{% highlight bash %}
+librarian-chef install --clean
 {% endhighlight %}
+
+
+
+
 
 
 ### Solo.rb
@@ -221,7 +237,8 @@ solo.rb found, but since knife-solo v0.3.0 it is not used any more
 
 # Bootstrapping the Server
 
-In the ideal world, Chef can and will completely determine the architecture of the server. However, when it comes to practicalities, the server still needs to be bootstrapped before it can be cooke. It broadly involves:
+Before you can cook your server, it has to be ready for cooking.
+In the ideal world, Chef can and will completely determine the architecture of the server. However, when it comes to practicalities, the server still needs to be bootstrapped before it can be cook. It broadly involves:
 
 - setting up a SSH connection, so that you  (meaning the software running on your computer) can securely communicate with it, and
 - installing stuff like unattended upgrades, and any obviously required packages (I'm not going to be idealistic here on not having dependencies outside of the Chef configuration)
@@ -230,7 +247,12 @@ In the ideal world, Chef can and will completely determine the architecture of t
 
 ## Configuring SSH
 
-SSH is pretty much the standard when it comes to open a communication channel with a server. I'll assume you know how to set it up. Using a non-default SSH port is a good idea to deter random hackers.
+SSH is pretty much the standard when it comes to opening a secure communication channel with a server.
+I'll assume you know how to set it up.
+
+There has been a recent debate on whether it is [a bad idea](http://www.adayinthelifeof.nl/2012/03/12/why-putting-ssh-on-another-port-than-22-is-bad-idea) or
+[a good idea](http://www.danielmiessler.com/blog/putting-ssh-another-port-good-idea)
+to use the a non-default port. I prefer to use a non-default port because I cannot deal with the noise of random hackers.
 
 
 ## Remotely installing Chef
@@ -271,8 +293,6 @@ It contains of a bunch of node specific data. The most pertinent is the run list
 
 Create a cookbook
 
-Then create a cookbook
-
 
 {% highlight bash %}
 knife cookbook create entity -r md
@@ -298,7 +318,7 @@ entity
 ├── resources
 └── templates
     └── default
-     
+
 {% endhighlight %}
 
 
@@ -306,24 +326,55 @@ entity
 
 
 
-## Includes and stuff like this
+## Includes, dependencies and stuff like this
 
-include recipe[rvm::user] in your run_list and add a user hash to the user_installs attribute list.
-
-eg
-
-{% highlight ruby %}
-
-node['dvm']['user_installs'] = [
-  { 'user'          => 'wiggle bottom',
-    'default_ruby'  => 'rbx',
-    'rubies'        => ['1.9.2', '1.8.7']
-  }
-]
-     
-{% endhighlight %}
+According to the official documentation:
+ *Declaring cookbook dependencies is not required with chef-solo.*
 
 
+- include_recipe 'java'
+    this goes somewhere in the cookbook
+
+- depends 'java'
+    in the meta data
+    can tell the user that the recipe requires java
+    or have some automated tool obtain the recipes
+
+This does not really make sense to me.
+It's obvious to me that declaring dependencies in the runlist is important.
+eg:
+    include recipe[rvm::user] in your run_list
+
+
+
+Include Recipes
+
+A recipe can include one (or more) recipes located in external cookbooks by using the include_recipe method. When a recipe is included, the resources found in that recipe will be inserted (in the same exact order) at the point where the include_recipe keyword is located. The syntax for including a recipe is like this:
+
+include_recipe "recipe"
+
+For example:
+
+include_recipe "apache2::mod_ssl"
+
+If a recipe is included more than once in a recipe, only the first inclusion will be processed and any subsequent inclusion will be ignored.
+
+
+
+# Logging
+
+
+try it
+
+Create Exceptions
+
+A recipe can write events to a log file and can cause exceptions using Chef::Log. The levels include debug, info, warn, error, and fatal. For example, to just capture information:
+
+Chef::Log.info('some useful information')
+
+Or to trigger a fatal exception:
+
+Chef::Log.fatal!('something bad')
 
 
 
@@ -355,10 +406,10 @@ Use openssl to generate an encryption key.
 {% highlight bash %}
 
 openssl rand -base64 512
-     
+
 {% endhighlight %}
 
-    
+
 
 And use this key to encrypt the data bag.
 
@@ -369,7 +420,7 @@ knife solo data bag create indika bob
 --data-bag-path data_bags
 -e vim
 --json-file data_bags/indika/_bob.json
-     
+
 {% endhighlight %}
 
 
@@ -393,16 +444,32 @@ the folder, and the file name.
 
 I suppose the first name refers to the site-cookbook - well it could.
 
+{% highlight json %}
+{
+    "id": "users",
+    "users": [
+        {
+            "user_name": "publish",
+            "tag": "publish",
+            "comment": "User for publishing content",
+            "use_ssh": true,
+            "ssh_key": "secret ssh key"
+        }
+    ]
+}
+{% endhighlight %}
+
+
+
 {% highlight ruby %}
 
-secret = Chef::EncryptedDataBagItem
-.load_secret("/root/.chef/motion_secret")
+secret = Chef::EncryptedDataBagItem.load_secret("/root/.chef/motion_secret")
 
-item = Chef::EncryptedDataBagItem.load("indika", "bob", secret)
-item = data_bag_item('indika', 'bob')
-puts item['password']
-url = "https://#{item['password']}/App.config"
-     
+entity_users_bag = Chef::EncryptedDataBagItem.load("entity", "users", secret)
+entity_users_bag['users'].each do |user_item|
+    puts user_item['user_name']
+end
+
 {% endhighlight %}
 
 
@@ -410,12 +477,9 @@ url = "https://#{item['password']}/App.config"
 
 # Roles
 
+Roles are a means of applying common functionality to multiple nodes. I'm only cooking one node, so moving on...
 
 Can define using JSON or the Ruby DSL.
-Don't really need them.
-
-
-
 
 
 
@@ -428,9 +492,14 @@ The Ruby community seems to be very splintered.
 
 
 Ansible and Salt exist. So does Puppet.
-What about OpenStack. People talk about OpenStack on OpenStack.
+People talk about OpenStack on OpenStack.
 
 Chef for cooking a server.
-And Docker for distributing programs.
 
-Berkshelf instead of Librarian.
+
+I wonder why Berkshelf is preferred over Librarian.
+
+
+
+Nice reading:
+http://docs.opscode.com/essentials_cookbook_recipes.html
