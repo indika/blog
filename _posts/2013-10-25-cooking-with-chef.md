@@ -365,9 +365,9 @@ If a recipe is included more than once in a recipe, only the first inclusion wil
 
 The warning logging works for me, but not the other ones.
 
-Chef::Log.info('FINDMEFINDME')
-Chef::Log.warn('i warn you')
-Chef::Log.fatal!('something bad')
+- Chef::Log.info('FINDMEFINDME')
+- Chef::Log.warn('i warn you')
+- Chef::Log.fatal!('something bad')
 
 Perhaps I need to increase the logging verbosity.
 
@@ -472,26 +472,16 @@ end
 # Roles
 
 Roles are a means of applying common functionality to multiple nodes. I'm only cooking one node, so moving on...
-
-Can define using JSON or the Ruby DSL.
-
+However, I should note that the Roles can be defined using JSON or the Ruby DSL.
 
 
 
 # Next
 
 
-Somethings are harder to cook than others.
-The Ruby community seems to be very splintered.
-
-
-Ansible and Salt exist. So does Puppet.
-People talk about OpenStack on OpenStack.
-
-Chef for cooking a server.
-
-
-I wonder why Berkshelf is preferred over Librarian.
+Puppet, Ansible and Salt exist.
+Someone once mentioned  OpenStack on OpenStack.
+Berkshelf is preferred over Librarian.
 
 
 
