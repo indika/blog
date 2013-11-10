@@ -291,6 +291,8 @@ It contains of a bunch of node specific data. The most pertinent is the run list
 
 # Structure of a Cookbook
 
+## Creating a Cookbook
+
 Create a cookbook
 
 
@@ -326,7 +328,7 @@ entity
 
 
 
-## Includes, dependencies and stuff like this
+## Includes, dependencies and stuff
 
 According to the official documentation:
  *Declaring cookbook dependencies is not required with chef-solo.*
