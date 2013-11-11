@@ -14,10 +14,10 @@ Stasis is bad. There is nothing agile about statis.
 When a component falls into statis, I'll let it be, and it'll carry on doing what it does.
 Until it breaks, that is, and then development comes to a halt until it is fixed.
 
-With Chef, you can declare your server architecture, and cook it as many times as you like, because of idempotent operations. If you recook your server often, then you need to fall into statis.
+With Chef, you can declare your server architecture, and cook it as many times as you like. It operates idempotently. If you recook your server often, then you will not fall into statis.
 
 Learning to cook with Chef feels like learning a DSL.
-I despise learning DSLs because I'm learning a language which operates at a layer of abstraction above what you actually want to do. Nevertheless, I find cooking with Chef a necessity now and would not want to go back.
+I despise learning DSLs because I'm learning a language which operates at a layer of abstraction above what I actually want to do. Nevertheless, I find cooking with Chef a necessity now and would not want to go back.
 
 If you are like me, and like to experiment, then often things can go fubar.
 It is comforting and encouraging to know that everything can be reconstructed in 15 minutes.
@@ -27,29 +27,25 @@ It is comforting and encouraging to know that everything can be reconstructed in
 
 # Concepts
 Cooking is simple. Chef offers a means of declaring a server architecture that is agnostic to the underlying platform.
-Conceptually simple, however how to actually cook was the biggest obstacle I experienced.
+Despite being conceptually simple, getting started was the biggest obstacle I experencied - and hence the purpose behind this article.
 
-
-Chef was built to distribute to multiple nodes
-Chef-Solo does not need a dedicated Chef Server
-Chef-Solo is a handy means to putting up a web server. There are a few quirks between full blown Chef and Chef-Solo.
-
+Chef was built to cook a farm of servers, with one server acting as the master.
+Chef-Solo differs in the way that it does not need a dedicated Chef Server.
+There are a few quirks between full blown Chef and Chef-Solo.
 
 Knife is a tool. This part is clear from the metaphor.
 Intuitively, I thought that knife was a tool used by Chef to perform the cook.
 Wrong. Knife is a tool that you use to instruct Chef to do it's job.
-Knife is a nice name, but a bit counter intuitive.
+Knife is a nice name, but a bit counter intuitive. "Knife Solo" is the specific version of the tool required for solo cooks.
 
-"Knife Solo" is the specific version of the tool required for solo cooks.
-
-The server needs to be prepared before you can cook
+In addition, your target node needs to be prepared by Knife Solo, before it can be cooked.
 
 
 
 # Ruby
 You will need Ruby to cook with Chef. RVM is a means to manage different versions of Ruby.
 RVM has been criticed for achieving too much, and that RBEnv is more focussed.
-However, RVM works for me for now. 
+However, RVM works for me for now.
 I had to have some faith when installing RVM, granting curl root priviledges:
 
 {% highlight bash %}
