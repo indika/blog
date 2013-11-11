@@ -280,11 +280,11 @@ It is just a bunch of attributes - data which is specific to the node. The most 
 
 Create a cookbook
 
-
 {% highlight bash %}
 knife cookbook create entity -r md
 {% endhighlight %}
 
+and it'll look a little bit like this:
 
 
 {% highlight text %}
@@ -448,10 +448,9 @@ However, I should note that the Roles can be defined using JSON or the Ruby DSL.
 
 Puppet, Ansible and Salt exist.
 Someone once mentioned  OpenStack on OpenStack.
-Berkshelf is preferred over Librarian.
+Berkshelf is preferred over Librarian for some reason.
 
-LWRPs seem important.
-Understand attribute precedence.
+LWRPs and understanding attribute precedence seem important.
 
 Nice reading:
 http://docs.opscode.com/essentials_cookbook_recipes.html
