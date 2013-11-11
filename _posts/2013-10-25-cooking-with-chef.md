@@ -12,20 +12,12 @@ share: true
 
 Stasis is bad. There is nothing agile about statis.
 When a component falls into statis, I'll let it be, and it'll carry on doing what it does.
-Until it breaks, that is. Everything falls apart until it can be fixed.
+Until it breaks, that is, and then development comes to a halt until it is fixed.
 
-When I first SSH'd into a remote box on the other side of the world,
-I felt like a hacker. I would pain-stakingly wait the 250ms RTT and configure the box. I had to.
-If I did not, everything would not work. Over time, the server fell into statis, and then it broke.
-Development stopped. Growth stopped. Changed stopped.
+With Chef, you can declare your server architecture, and cook it as many times as you like, because of idempotent operations. If you recook your server often, then you need to fall into statis.
 
-Chef offers a means to declare your server architecture, and cook it.
 Learning to cook with Chef feels like learning a DSL.
-You have to learn a language which operates at a layer of abstraction above what you actually want to do.
-I despise learning DSLs because of the shortness of their lifespans,
-however regarding Chef,
-learning it doesn't feel as esoteric as learning Puppet,
-and I find the process a necessity now.
+I despise learning DSLs because I'm learning a language which operates at a layer of abstraction above what you actually want to do. Nevertheless, I find cooking with Chef a necessity now and would not want to go back.
 
 If you are like me, and like to experiment, then often things can go fubar.
 It is comforting and encouraging to know that everything can be reconstructed in 15 minutes.
@@ -34,8 +26,8 @@ It is comforting and encouraging to know that everything can be reconstructed in
 
 
 # Concepts
-Cooking is simple. Chef offers a means of declaring a server architecture, while being agnostic to the underlying platform.
-Simple. however, the concepts and the roles they play were the biggest stumbling block I experienced.
+Cooking is simple. Chef offers a means of declaring a server architecture that is agnostic to the underlying platform.
+Conceptually simple, however how to actually cook was the biggest obstacle I experienced.
 
 
 Chef was built to distribute to multiple nodes
@@ -48,18 +40,17 @@ Intuitively, I thought that knife was a tool used by Chef to perform the cook.
 Wrong. Knife is a tool that you use to instruct Chef to do it's job.
 Knife is a nice name, but a bit counter intuitive.
 
-Knife Solo is what you will use to perform solo cooks.
+"Knife Solo" is the specific version of the tool required for solo cooks.
 
 The server needs to be prepared before you can cook
 
 
 
 # Ruby
-You will need Ruby. Chef is written in Ruby. RVM is a means to manage different versions of Ruby.
+You will need Ruby to cook with Chef. RVM is a means to manage different versions of Ruby.
 RVM has been criticed for achieving too much, and that RBEnv is more focussed.
-
-RVM works for me for now. Have some faith give curl root priviledges:
-
+However, RVM works for me for now. 
+I had to have some faith when installing RVM, granting curl root priviledges:
 
 {% highlight bash %}
 \curl -L https://get.rvm.io | bash -s stable --ruby
@@ -69,7 +60,7 @@ RVM works for me for now. Have some faith give curl root priviledges:
 The root priviledges are so that it can make changes to openssl. Should I not be a bit more paranoid here?
 
 
-And then you have to source it.
+After you have installed it, you have to source it.
 
 {% highlight bash %}
 source /Users/indika/.rvm/scripts/rvm
@@ -141,10 +132,9 @@ bundle install
 {% endhighlight %}
 
 
-I'm not sure exactly why Bundler is better than Gem to manage dependencies.
-But I do know Bundler can maintain the specific version number required for the application (Chef).
+Bundler is considered better than Gem to manage dependencies. I'm not sure why. I do know Bundler can maintain the specific version number required for the application (Chef).
 And it also obtains the gems required by the required gems, and so forth.
-And I do know that it simply just work.
+It simply just works.
 
 
 ### Scaffolding
@@ -283,10 +273,9 @@ scp -P 2222 ~/.chef/motion_secret root@motion:/root/.chef/motion_secret
 
 # Nodes
 
-The .json configuration files is where the definition of a node (node) exists.
-This is a good place to start interrogating Chef.
+A particular node on your server farm, is defined by .json file. I believe that the file must have the same name as it's alias in your /etc/hosts. This is a good place to start interregating Chef.
 
-It contains of a bunch of node specific data. The most pertinent is the run list. The run list is where the action happens, and it appears the order of items in the list, is the order in which the action happens.
+It is just a bunch of attributes - data which is specific to the node. The most pertinent attribute is the run list. The run list is where the action happens - it contains a list of recipes that will be applied. The order of which recipes appear in the run_list is preserved during the cook.
 
 
 # Structure of a Cookbook
@@ -369,8 +358,7 @@ Perhaps I need to increase the logging verbosity.
 # Databags
 
 Knife solo uploads cookbooks, roles and data bags onto the target node.
-This was not obvious to me at first.
-It was possible that it would only sending instructions.
+This was not obvious to me at first - it is possible that it only sends instructions.
 
 Databags are annoying, yet they feel necessary. Debugging broken data bags are slow. However, they seem important and my struggled attempt to justify them are as follows:
 
@@ -420,15 +408,6 @@ knife solo data bag create indika bob
 Notice how this creates the structure for me. And I fully specify the source.
 
 
-This is the strategy:
-Have a folder called data\_bags\_plain
-
-Inside there, have an example folder
-
-Now, there are two concepts,
-the folder, and the file name.
-
-I suppose the first name refers to the site-cookbook - well it could.
 
 {% highlight json %}
 {
@@ -476,6 +455,7 @@ Someone once mentioned  OpenStack on OpenStack.
 Berkshelf is preferred over Librarian.
 
 LWRPs seem important.
+Understand attribute precedence.
 
 Nice reading:
 http://docs.opscode.com/essentials_cookbook_recipes.html
