@@ -447,7 +447,7 @@ However, I should note that the Roles can be defined using JSON or the Ruby DSL.
 
 
 Puppet, Ansible and Salt exist.
-Someone once mentioned  OpenStack on OpenStack.
+Someone once mentioned OpenStack on OpenStack.
 Berkshelf is preferred over Librarian for some reason.
 
 LWRPs and understanding attribute precedence seem important.
