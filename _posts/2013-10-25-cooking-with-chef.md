@@ -284,7 +284,7 @@ Create a cookbook
 knife cookbook create entity -r md
 {% endhighlight %}
 
-and it'll look a little bit like this:
+For some reason, this command places my cookbook, not into the site-cookbooks directory, but into the cookbooks directory. Anyway, it'll look a little bit like this:
 
 
 {% highlight text %}
