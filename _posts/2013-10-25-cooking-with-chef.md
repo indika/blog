@@ -25,6 +25,7 @@ It is comforting and encouraging to know that everything can be reconstructed in
 
 
 
+
 # Concepts
 Cooking is simple. Chef offers a means of declaring a server architecture that is agnostic to the underlying platform.
 Despite being conceptually simple, getting started was the biggest obstacle I experencied - and hence the purpose behind this article.
