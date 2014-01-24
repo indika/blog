@@ -10,7 +10,7 @@ share: true
 
 
 
-Stasis is bad. There is nothing agile about statis.
+Stasis is unstable. There is nothing agile about stasis.
 When a component falls into statis, I'll let it be, and it'll carry on doing what it does.
 Until it breaks, that is, and then development comes to a halt until it is fixed.
 
