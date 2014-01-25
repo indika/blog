@@ -313,7 +313,7 @@ entity
 
 
 
-## Includes, dependencies and stuff
+## Dependencies
 
 According to the official documentation:
  *Declaring cookbook dependencies is not required with chef-solo.*
@@ -321,17 +321,13 @@ According to the official documentation:
 I have seen two types of dependency statements:
 
 - include_recipe 'java'
-    - include_recipe "apache2::mod_ssl"
-    - you can find this at the top of a recipe
+    - include_recipe "java" or include_recipe "apache2::mod_ssl"
+    - These can be found at the top of a recipe
     - the resources found in that recipe will be inserted (in the same exact order) at that point
 
 - depends 'java'
-    - you can find this in the meta data
-    - it can tell the user that the recipe requires java
-    - or have some autometed tool obtain the dependant recipes
-
-There are also dependency statements in the run_list:
-- "recipe[postgresql::server]",
+    - This can be found in the meta data of a cookbook
+    - I assume that this cookbook may be automatically obtained, however, I wonder how the exact URL is resolved.
 
 
 
