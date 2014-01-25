@@ -16,7 +16,7 @@ Until it breaks that is, and then development comes to a halt until it is fixed.
 With Chef, you can declare your server architecture, and cook it as many times as you like. It operates idempotently. If you recook your server often, then you will not fall into stasis.
 
 Learning to cook with Chef feels like learning a DSL.
-I despise learning DSLs because I'm learning a language which operates at a layer of abstraction above what I actually want to do. Nevertheless, I find cooking with Chef a necessity now and would not want to go back.
+I despise learning DSLs because I'm learning a language that operates at a layer of abstraction above what I actually want to do. Nevertheless, I find cooking with Chef a necessity now and would not want to go back.
 
 If you are like me, and like to experiment, then often things can go fubar.
 It is comforting and encouraging to know that everything can be reconstructed in 15 minutes.
@@ -37,7 +37,7 @@ Intuitively, I thought that knife was a tool used by Chef to perform the cook.
 I was wrong. Knife is a tool that you use to instruct Chef to do its job.
 Knife is a nice name, but a bit counter intuitive. "Knife Solo" is the specific version of the tool required for solo cooks.
 
-In addition, your target node needs to be prepared by Knife Solo, before it can be cooked.
+In addition, before the target node can be cooked, it needs to be prepared by Knife Solo.
 
 
 
@@ -118,8 +118,7 @@ gem 'foodcritic'
 {% endhighlight %}
 
 
-
-And then use Bundler to obtain these dependencies.
+So then use Bundler to obtain these dependencies.
 
 
 {% highlight bash %}
@@ -128,7 +127,7 @@ bundle install
 
 
 Bundler is considered better than Gem to manage dependencies. I'm not sure why. I do know Bundler can maintain the specific version number required for the application (Chef).
-And, it also obtains the gems required by the required gems, and so forth.
+It also obtains the gems required by the required gems, and so forth.
 It simply just works.
 
 
@@ -223,7 +222,7 @@ solo.rb found, but since knife-solo v0.3.0 it is not used any more
 # Bootstrapping the Server
 
 Before you can cook your server, it has to be ready for cooking.
-In the ideal world, Chef can and will completely determine the architecture of the server. However, when it comes to practicalities, the server still needs to be bootstrapped before it can be cooked. It broadly involves:
+In an ideal world, Chef can and will completely determine the architecture of the server. However, when it comes to practicalities, the server still needs to be bootstrapped before it can be cooked. It broadly involves:
 
 - setting up a SSH connection, so that you  (meaning the software running on your computer) can securely communicate with it, and
 - installing stuff like unattended upgrades, and any obviously required packages (I'm not going to be idealistic here on not having dependencies outside the Chef configuration)
@@ -268,9 +267,9 @@ scp -P 2222 ~/.chef/motion_secret root@motion:/root/.chef/motion_secret
 
 # Nodes
 
-A particular node on your server farm, is defined by .json file. I believe that the file must have the same name as it's alias in your /etc/hosts. This is a good place to start interrogating Chef.
+A particular node on your server farm is defined by .json file. I believe that the file must have the same name as it's alias in your /etc/hosts. This is a good place to start interrogating Chef.
 
-It is just a bunch of attributes - data which is specific to the node. The most pertinent attribute is the run list. The run list is where the action happens - it contains a list of recipes that will be applied. The order of which recipes appear in the run_list is preserved during the cook.
+It is just a bunch of attributes - data that is specific to the node. The most pertinent attribute is the run list. The run list is where the action happens - it contains a list of recipes that will be applied. The order of which recipes appear in the run_list is preserved during the cook.
 
 
 # Structure of a Cookbook
@@ -326,7 +325,7 @@ There are two types of dependency statements:
     - the resources found in that recipe will be inserted (in the exact same order) at that point
 
 - depends 'java'
-    - This can be found in the meta data of a cookbook
+    - This can be found in the metadata of a cookbook
     - I assume that this cookbook may be automatically obtained, however, I wonder how the exact URL is resolved.
 
 
@@ -350,7 +349,7 @@ Perhaps I need to increase the logging verbosity.
 # Databags
 
 Knife solo uploads cookbooks, roles and data bags onto the target node.
-This was not obvious to me at first - it is possible that it only sends instructions.
+This was not obvious to me at first. Initially, I assumed that it only sends instructions.
 
 Databags are annoying, yet they feel necessary. Debugging broken data bags are slow. However, they seem important and my struggled attempt to justify them are as follows:
 
@@ -360,7 +359,7 @@ Databags are annoying, yet they feel necessary. Debugging broken data bags are s
 
 Nevertheless, I will use them to wire good security habit.
 
-The basic idea is that keys are stored in .json files and encrypted versions are sent to the Chef server.
+The basic idea is that keys are stored in .json files, and encrypted versions are sent to the Chef server.
 
 An annoying point to bear in mind is, the ID of the data bag must match the name of the file, minus the .json name. Otherwise, the convention fails!
 
@@ -377,7 +376,7 @@ openssl rand -base64 512
 
 
 
-And use this key to encrypt the data bag.
+So use this key to encrypt the data bag.
 
 {% highlight bash %}
 
