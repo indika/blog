@@ -1,7 +1,7 @@
-title:            A Nameless Blog
+title:            HydraSquared
 description:      I'm still searching for a name for this blog.
-url:              http://http://174.34.170.180
-signoff:          Nameless
+url:              http://hydrasquared.com
+signoff:          Indika
 disqus_shortname: # disqus comment thread for post header options. ( leave blank if unwanted. )
 facebook_appid:   # appid for like button, remove from /_includes/share.html if unwanted.
 google_analytics: UA-45186369-1
@@ -20,3 +20,5 @@ permalink:        pretty
 markdown:         rdiscount
 rdiscount:
   extensions:     [smart]
+
+exclude: ["lib", "config.rb", "Capfile", "config", "log", "Rakefile", "Rakefile.rb", "tmp", "less", "*.sublime-project", "*.sublime-workspace", "test", "spec", "Gruntfile.js", "package.json", "node_modules"]
