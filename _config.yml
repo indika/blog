@@ -1,8 +1,8 @@
 title:            HydraSquared
-description:      I'm still searching for a name for this blog.
+description:      Another blog in the corner of the Internet.
 url:              http://hydrasquared.com
 signoff:          Indika
-disqus_shortname: # disqus comment thread for post header options. ( leave blank if unwanted. )
+disqus_shortname: hydrasquared
 facebook_appid:   # appid for like button, remove from /_includes/share.html if unwanted.
 google_analytics: UA-45186369-1
 
