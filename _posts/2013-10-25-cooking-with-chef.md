@@ -10,8 +10,7 @@ share: true
 
 
 
-Stasis is unstable. There is nothing agile about stasis.
-When a component falls into statis, I'll let it be, and it'll carry on doing what it does.
+Stasis is unstable. Chaos always seeps through. When a component falls into statis, I'll let it be, and it'll carry on doing what it does.
 Until it breaks, that is, and then development comes to a halt until it is fixed.
 
 With Chef, you can declare your server architecture, and cook it as many times as you like. It operates idempotently. If you recook your server often, then you will not fall into statis.
@@ -35,7 +34,7 @@ There are a few quirks between full blown Chef and Chef-Solo.
 
 Knife is a tool. This part is clear from the metaphor.
 Intuitively, I thought that knife was a tool used by Chef to perform the cook.
-Wrong. Knife is a tool that you use to instruct Chef to do it's job.
+I was wrong. Knife is a tool that you use to instruct Chef to do it's job.
 Knife is a nice name, but a bit counter intuitive. "Knife Solo" is the specific version of the tool required for solo cooks.
 
 In addition, your target node needs to be prepared by Knife Solo, before it can be cooked.
@@ -313,12 +312,13 @@ entity
 
 
 
-## Dependencies
+## Cookbook Dependencies
 
 According to the official documentation:
  *Declaring cookbook dependencies is not required with chef-solo.*
+I have a hard time understanding why.
 
-I have seen two types of dependency statements:
+There are two types of dependency statements:
 
 - include_recipe 'java'
     - include_recipe "java" or include_recipe "apache2::mod_ssl"
