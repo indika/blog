@@ -10,10 +10,10 @@ share: true
 
 
 
-Stasis is unstable. Chaos always seeps through. When a component falls into statis, I'll let it be, and it'll carry on doing what it does.
-Until it breaks, that is, and then development comes to a halt until it is fixed.
+Stasis is unstable. Chaos always seeps through. When a component falls into stasis, I'll let it be, and it'll carry on doing what it does.
+Until it breaks that is, and then development comes to a halt until it is fixed.
 
-With Chef, you can declare your server architecture, and cook it as many times as you like. It operates idempotently. If you recook your server often, then you will not fall into statis.
+With Chef, you can declare your server architecture, and cook it as many times as you like. It operates idempotently. If you recook your server often, then you will not fall into stasis.
 
 Learning to cook with Chef feels like learning a DSL.
 I despise learning DSLs because I'm learning a language which operates at a layer of abstraction above what I actually want to do. Nevertheless, I find cooking with Chef a necessity now and would not want to go back.
@@ -26,15 +26,15 @@ It is comforting and encouraging to know that everything can be reconstructed in
 
 # Concepts
 Cooking is simple. Chef offers a means of declaring a server architecture that is agnostic to the underlying platform.
-Despite being conceptually simple, getting started was the biggest obstacle I experencied - and hence the purpose behind this article.
+Despite being conceptually simple, getting started was the biggest obstacle I experienced - and hence the purpose behind this article.
 
 Chef was built to cook a farm of servers, with one server acting as the master.
 Chef-Solo differs in the way that it does not need a dedicated Chef Server.
-There are a few quirks between full blown Chef and Chef-Solo.
+There are a few quirks between full-blown Chef and Chef-Solo.
 
 Knife is a tool. This part is clear from the metaphor.
 Intuitively, I thought that knife was a tool used by Chef to perform the cook.
-I was wrong. Knife is a tool that you use to instruct Chef to do it's job.
+I was wrong. Knife is a tool that you use to instruct Chef to do its job.
 Knife is a nice name, but a bit counter intuitive. "Knife Solo" is the specific version of the tool required for solo cooks.
 
 In addition, your target node needs to be prepared by Knife Solo, before it can be cooked.
@@ -43,16 +43,16 @@ In addition, your target node needs to be prepared by Knife Solo, before it can 
 
 # Ruby
 You will need Ruby to cook with Chef. RVM is a means to manage different versions of Ruby.
-RVM has been criticed for achieving too much, and that RBEnv is more focussed.
+RVM has been criticised for achieving too much, and that RBEnv is more focussed.
 However, RVM works for me for now.
-I had to have some faith when installing RVM, granting curl root priviledges:
+I had to have some faith when installing RVM, granting curl root privileges:
 
 {% highlight bash %}
 \curl -L https://get.rvm.io | bash -s stable --ruby
     curl -L get.rvm.io | bash -s stable
 {% endhighlight %}
 
-The root priviledges are so that it can make changes to openssl. Should I not be a bit more paranoid here?
+The root privileges are required to make changes to openssl. Should I not be a bit more paranoid here?
 
 
 After you have installed it, you have to source it.
@@ -95,7 +95,7 @@ encrypted_data_bag_secret "#{ENV['HOME']}/.chef/motion_secret"
 {% endhighlight %}
 
 
-This file might be necessary for knife solo because Chef was built to run on it's own dedicated server.
+This file might be necessary for knife solo because Chef was built to run on its own dedicated server.
 
 
 ## A workspace for the Kitchen
@@ -128,7 +128,7 @@ bundle install
 
 
 Bundler is considered better than Gem to manage dependencies. I'm not sure why. I do know Bundler can maintain the specific version number required for the application (Chef).
-And it also obtains the gems required by the required gems, and so forth.
+And, it also obtains the gems required by the required gems, and so forth.
 It simply just works.
 
 
@@ -223,10 +223,10 @@ solo.rb found, but since knife-solo v0.3.0 it is not used any more
 # Bootstrapping the Server
 
 Before you can cook your server, it has to be ready for cooking.
-In the ideal world, Chef can and will completely determine the architecture of the server. However, when it comes to practicalities, the server still needs to be bootstrapped before it can be cook. It broadly involves:
+In the ideal world, Chef can and will completely determine the architecture of the server. However, when it comes to practicalities, the server still needs to be bootstrapped before it can be cooked. It broadly involves:
 
 - setting up a SSH connection, so that you  (meaning the software running on your computer) can securely communicate with it, and
-- installing stuff like unattended upgrades, and any obviously required packages (I'm not going to be idealistic here on not having dependencies outside of the Chef configuration)
+- installing stuff like unattended upgrades, and any obviously required packages (I'm not going to be idealistic here on not having dependencies outside the Chef configuration)
 - the existence of Chef specific libraries.
 - the existence of the secret file to decrypt data bags (more on this later)
 
@@ -237,7 +237,7 @@ I'll assume you know how to set it up.
 
 There has been a recent debate on whether it is [a bad idea](http://www.adayinthelifeof.nl/2012/03/12/why-putting-ssh-on-another-port-than-22-is-bad-idea) or
 [a good idea](http://www.danielmiessler.com/blog/putting-ssh-another-port-good-idea)
-to use the a non-default port. I prefer to use a non-default port because I cannot deal with the noise of random hackers.
+to use a non-default port. I prefer to use a non-default port because I cannot deal with the noise of random hackers.
 
 
 ## Remotely installing Chef
@@ -250,12 +250,12 @@ knife solo prepare root@motion -p 2222
 {% endhighlight %}
 
 
-This installs Ruby, RubyGems and Chef on target mach. Chef needs to be installed on the server
+This installs Ruby, RubyGems and Chef on target machine. Chef needs to be installed on the server
 
 
 ## Create a secret file and SCP it
 
-Vulnerable pieces should be encrypted. More about this listen. For now, simply generate a secret key and upload it via SCP.
+Vulnerable pieces should be encrypted. More about this later. For now, simply generate a secret key and upload it via SCP.
 
 
 {% highlight bash %}
@@ -268,7 +268,7 @@ scp -P 2222 ~/.chef/motion_secret root@motion:/root/.chef/motion_secret
 
 # Nodes
 
-A particular node on your server farm, is defined by .json file. I believe that the file must have the same name as it's alias in your /etc/hosts. This is a good place to start interregating Chef.
+A particular node on your server farm, is defined by .json file. I believe that the file must have the same name as it's alias in your /etc/hosts. This is a good place to start interrogating Chef.
 
 It is just a bunch of attributes - data which is specific to the node. The most pertinent attribute is the run list. The run list is where the action happens - it contains a list of recipes that will be applied. The order of which recipes appear in the run_list is preserved during the cook.
 
@@ -323,7 +323,7 @@ There are two types of dependency statements:
 - include_recipe 'java'
     - include_recipe "java" or include_recipe "apache2::mod_ssl"
     - These can be found at the top of a recipe
-    - the resources found in that recipe will be inserted (in the same exact order) at that point
+    - the resources found in that recipe will be inserted (in the exact same order) at that point
 
 - depends 'java'
     - This can be found in the meta data of a cookbook
@@ -356,7 +356,7 @@ Databags are annoying, yet they feel necessary. Debugging broken data bags are s
 
 - The Chef server could be compromised
 - Can manage data bags in source control without plain text
-- Perhaps the reason behind data bags is because private information can be intercepted between the Chef server and the node.
+- Perhaps the reason behind data bags is that private information can be intercepted between the Chef server and the node.
 
 Nevertheless, I will use them to wire good security habit.
 
