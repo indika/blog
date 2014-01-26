@@ -395,8 +395,7 @@ This command:
 - a preferred text editor
 - and a source bag
 
-Notice how this creates the structure for me. And I fully specify the source.
-
+Notice how this creates the file structure for me.
 
 
 {% highlight json %}
@@ -414,6 +413,7 @@ Notice how this creates the structure for me. And I fully specify the source.
 }
 {% endhighlight %}
 
+The databag can be accessed from the recipe like this:
 
 
 {% highlight ruby %}
