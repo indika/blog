@@ -1,8 +1,8 @@
 ---
 layout: post
-title: Cooking a Web-Server with Chef-Solo
+title: Cooking a Web-Server with Chef-Solo [DRAFT]
 description: "Cooking a Web-Server with Chef-Solo"
-modified: 2013-10-25
+modified: 2014-01-10
 tags: [chef, chef-solo, web server, devops]
 comments: false
 share: true
@@ -357,7 +357,7 @@ Databags are annoying, yet they feel necessary. Debugging broken data bags are s
 - Can manage data bags in source control without plain text
 - Perhaps the reason behind data bags is that private information can be intercepted between the Chef server and the node.
 
-Nevertheless, I will use them to wire good security habit.
+Nevertheless, I will use them to wire in good security habits.
 
 The basic idea is that keys are stored in .json files, and encrypted versions are sent to the Chef server.
 
@@ -382,21 +382,20 @@ So use this key to encrypt the data bag.
 
 {% highlight bash %}
 
-knife solo data bag create indika bob
+knife solo data bag create indika mybag
 --secret-file /Users/indika/.chef/encrypted_data_bag_secret
 --data-bag-path data_bags
 -e vim
---json-file data_bags/indika/_bob.json
+--json-file data_bags/indika/_mybag.json
 
 {% endhighlight %}
 
 
-
-
-- It takes a secret file.
-- A path to place the bag
-- A preferred editor
-- And a source bag
+This command:
+- takes a secret file
+- a path to place the bag
+- a preferred text editor
+- and a source bag
 
 Notice how this creates the structure for me. And I fully specify the source.
 
@@ -449,5 +448,5 @@ Berkshelf is preferred over Librarian for some reason.
 <!-- LWRPs and understanding attribute precedence seem important. -->
 
 Recommended reading:
-(http://docs.opscode.com/essentials_cookbook_recipes.html)
+[Essential Cookbook Recipes](http://docs.opscode.com/essentials_cookbook_recipes.html)
 
