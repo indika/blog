@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Cooking a Web-Server with Chef-Solo [DRAFT]
+title: Cooking a Web-Server with Chef-Solo
 description: "Cooking a Web-Server with Chef-Solo"
 modified: 2013-10-25
 tags: [chef, chef-solo, web server, devops]
@@ -333,7 +333,7 @@ There are two types of dependency statements:
 
 
 
-## Logging
+<!-- ## Logging
 
 The warning logging works for me, but not the other ones.
 
@@ -342,7 +342,7 @@ The warning logging works for me, but not the other ones.
 - Chef::Log.fatal!('something bad')
 
 Perhaps I need to increase the logging verbosity.
-
+ -->
 
 
 
@@ -362,6 +362,8 @@ Nevertheless, I will use them to wire good security habit.
 The basic idea is that keys are stored in .json files, and encrypted versions are sent to the Chef server.
 
 An annoying point to bear in mind is, the ID of the data bag must match the name of the file, minus the .json name. Otherwise, the convention fails!
+
+
 
 
 ## Encryption Keys
@@ -433,19 +435,19 @@ end
 
 # Roles
 
-Roles are a means of applying common functionality to multiple nodes. I'm only cooking one node, so moving on...
+Roles are a means of applying common functionality to multiple nodes.
+I am only cooking one node, so roles can be ignored for now.
 However, I should note that the Roles can be defined using JSON or the Ruby DSL.
 
 
 
 # Next
 
-
-Puppet, Ansible and Salt exist.
-Someone once mentioned OpenStack on OpenStack.
+Chef is not the only framework cooking a server. Puppet, Ansible and Salt exist.
 Berkshelf is preferred over Librarian for some reason.
 
-LWRPs and understanding attribute precedence seem important.
+<!-- LWRPs and understanding attribute precedence seem important. -->
 
-Nice reading:
-http://docs.opscode.com/essentials_cookbook_recipes.html
+Recommended reading:
+(http://docs.opscode.com/essentials_cookbook_recipes.html)
+
