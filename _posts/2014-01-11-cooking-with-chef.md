@@ -346,19 +346,19 @@ Perhaps I need to increase the logging verbosity.
 # Databags
 
 Knife solo uploads cookbooks, roles and data bags onto the target node.
-This was not obvious to me at first. Initially, I assumed that it only sends instructions.
+This was not obvious to me at first. I assumed initially that it only sends instructions.
 
-Databags are annoying, yet they feel necessary. Debugging broken data bags are slow. However, they seem important and my struggled attempt to justify them are as follows:
+Databags are annoying, yet they feel necessary. Debugging broken bags are slow. However, they seem important and my struggled attempt to justify them are as follows:
 
 - The Chef server could be compromised
-- Can manage data bags in source control without plain text
-- Perhaps the reason behind data bags is that private information can be intercepted between the Chef server and the node.
+- Data bags can be stored in source control without plain text
+- Private information can be intercepted between the Chef server and the node.
 
 Nevertheless, I will use them to wire in good security habits.
 
 The basic idea is that keys are stored in .json files, and encrypted versions are sent to the Chef server.
 
-An annoying point to bear in mind is, the ID of the data bag must match the name of the file, minus the .json name. Otherwise, the convention fails!
+An annoying point to bear in mind is, the ID of the data bag must match the name of the file, minus the .json name, otherwise the convention fails.
 
 
 
@@ -388,14 +388,7 @@ knife solo data bag create indika mybag
 {% endhighlight %}
 
 
-This command:
-
-- takes a secret file
-- a path to place the bag
-- a preferred text editor
-- and a source bag
-
-Notice how this creates the file structure for me.
+This command, takes a secret file, a path to place the bag, a preferred text editor and a source bag. Notice how this creates the data bage structure for me.
 
 
 {% highlight json %}
@@ -413,7 +406,7 @@ Notice how this creates the file structure for me.
 }
 {% endhighlight %}
 
-The databag can be accessed from the recipe like this:
+The databag can be accessed from within the recipe like this:
 
 
 {% highlight ruby %}
