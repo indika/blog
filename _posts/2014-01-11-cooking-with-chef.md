@@ -357,7 +357,7 @@ Nevertheless, I will use them to wire in good security habits.
 
 The basic idea is that keys are stored in .json files, and encrypted versions are sent to the Chef server.
 
-An annoying point to bear in mind is, the ID of the data bag must match the name of the file, minus the .json name, otherwise the convention fails.
+An annoying point to bear in mind is, the id of the data bag must match the name of the file, minus the .json name, otherwise the convention fails.
 
 
 
@@ -433,7 +433,7 @@ However, I should note that the Roles can be defined using JSON or the Ruby DSL.
 # Next
 
 Chef is not the only framework cooking a server. Puppet, Ansible and Salt exist.
-Berkshelf is preferred over Librarian for some reason.
+I should also investigate into why Berkshelf is preferred over Librarian.
 
 <!-- LWRPs and understanding attribute precedence seem important. -->
 
