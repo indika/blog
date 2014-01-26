@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Cooking a Web-Server with Chef-Solo [DRAFT]
+title: Cooking a Web-Server with Chef-Solo
 description: "Cooking a Web-Server with Chef-Solo"
 modified: 2014-01-11
 tags: [chef, chef-solo, web server, devops]
@@ -62,7 +62,7 @@ source /Users/indika/.rvm/scripts/rvm
 {% endhighlight %}
 
 
-Bundler is awesome (according to the community.) Use it to manage the gems required for the client side of the Chef.
+Bundler is awesome (according to the community). Use it to manage the gems required for the client side of the Chef.
 Use Gem to obtain Bundler.
 
 {% highlight bash %}
@@ -148,7 +148,6 @@ Your kitchen should look like:
 ├── Gemfile.lock
 ├── cookbooks
 │   └── - public cookbooks get loaded in here
-│       -
 ├── data_bags
 │   └── - secret stuff
 ├── nodes
@@ -214,8 +213,7 @@ librarian-chef install --clean
 
 
 ### Solo.rb
-This seems to be deprecated.
-solo.rb found, but since knife-solo v0.3.0 it is not used any more
+This seems to be deprecated, since knife-solo v0.3.0.
 
 
 
@@ -224,15 +222,14 @@ solo.rb found, but since knife-solo v0.3.0 it is not used any more
 Before you can cook your server, it has to be ready for cooking.
 In an ideal world, Chef can and will completely determine the architecture of the server. However, when it comes to practicalities, the server still needs to be bootstrapped before it can be cooked. It broadly involves:
 
-- setting up a SSH connection, so that you  (meaning the software running on your computer) can securely communicate with it, and
-- installing stuff like unattended upgrades, and any obviously required packages (I'm not going to be idealistic here on not having dependencies outside the Chef configuration)
+- setting up a SSH connection, so that you (meaning the software running on your computer) can securely communicate with it, and
+- installing unattended upgrades, and any obviously required packages (I'm not going to be idealistic here on not having dependencies outside the Chef configuration)
 - the existence of Chef specific libraries.
 - the existence of the secret file to decrypt data bags (more on this later)
 
 ## Configuring SSH
 
-SSH is pretty much the standard when it comes to opening a secure communication channel with a server.
-I'll assume you know how to set it up.
+SSH is pretty much the standard when it comes to opening a secure communication channel with a server. I'll assume you know how to set it up.
 
 There has been a recent debate on whether it is [a bad idea](http://www.adayinthelifeof.nl/2012/03/12/why-putting-ssh-on-another-port-than-22-is-bad-idea) or
 [a good idea](http://www.danielmiessler.com/blog/putting-ssh-another-port-good-idea)
@@ -269,7 +266,7 @@ scp -P 2222 ~/.chef/motion_secret root@motion:/root/.chef/motion_secret
 
 A particular node on your server farm is defined by .json file. I believe that the file must have the same name as it's alias in your /etc/hosts. This is a good place to start interrogating Chef.
 
-It is just a bunch of attributes - data that is specific to the node. The most pertinent attribute is the run list. The run list is where the action happens - it contains a list of recipes that will be applied. The order of which recipes appear in the run_list is preserved during the cook.
+It appears to be an collection of attributes - data that is specific to the node. The most pertinent attribute is the run list. The run list is where the action happens - it contains a list of recipes that will be applied. The order of which recipes appear in the run_list is preserved during the cook.
 
 
 # Structure of a Cookbook
@@ -392,6 +389,7 @@ knife solo data bag create indika mybag
 
 
 This command:
+
 - takes a secret file
 - a path to place the bag
 - a preferred text editor
