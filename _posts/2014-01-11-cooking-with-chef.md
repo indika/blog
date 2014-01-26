@@ -291,8 +291,8 @@ entity
 │   └── default
 ├── libraries
 ├── metadata.rb
-│   └── - information about the creator
-│       - has some depends statements
+│   └── - information about the author
+│       - dependecies to other cookbooks exist here
 ├── providers
 ├── recipes
 │   └── default.rb
