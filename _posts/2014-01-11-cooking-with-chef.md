@@ -184,7 +184,7 @@ librarian-chef init
 
 
 
-This is my Cheffile
+Here is a sample of my Cheffile:
 
 {% highlight ruby %}
 site 'http://community.opscode.com/api/v1'
@@ -194,14 +194,13 @@ cookbook 'cron', :git => 'git://github.com/opscode-cookbooks/cron.git'
 cookbook 'database', :git => 'git://github.com/opscode-cookbooks/database.git'
 cookbook 'logwatch', :git => 'git://github.com/opscode-cookbooks/logwatch.git'
 cookbook 'nginx', :git => 'git://github.com/opscode-cookbooks/nginx.git'
-cookbook 'phantomjs', :git => 'git://github.com/customink-webops/phantomjs.git'
 cookbook 'python', :git => 'git://github.com/opscode-cookbooks/python.git'
 cookbook 'postgresql', :git => 'git://github.com/opscode-cookbooks/postgresql.git'
 cookbook 'user', :git => 'git://github.com/fnichol/chef-user.git'
 {% endhighlight %}
 
 
-And fetch your cookbooks:
+And then user librarian-chef to fetch the cookbooks:
 
 {% highlight bash %}
 librarian-chef install --clean
@@ -264,7 +263,7 @@ scp -P 2222 ~/.chef/motion_secret root@motion:/root/.chef/motion_secret
 
 # Nodes
 
-A particular node on your server farm is defined by .json file. I believe that the file must have the same name as it's alias in your /etc/hosts. This is a good place to start interrogating Chef.
+A particular node on your server farm is defined by .json file. I believe that the file must have the same name as its alias in your /etc/hosts. This is a good place to start interrogating Chef.
 
 It appears to be an collection of attributes - data that is specific to the node. The most pertinent attribute is the run list. The run list is where the action happens - it contains a list of recipes that will be applied. The order of which recipes appear in the run_list is preserved during the cook.
 
@@ -312,7 +311,7 @@ entity
 
 According to the official documentation:
  *Declaring cookbook dependencies is not required with chef-solo.*
-I have a hard time understanding why.
+I have a hard time understanding why this is.
 
 There are two types of dependency statements:
 
@@ -388,7 +387,7 @@ knife solo data bag create indika mybag
 {% endhighlight %}
 
 
-This command, takes a secret file, a path to place the bag, a preferred text editor and a source bag. Notice how this creates the data bage structure for me.
+This command, takes a secret file, a path to place the bag, a preferred text editor and a source bag. Notice how this creates the data bag structure for me.
 
 
 {% highlight json %}
