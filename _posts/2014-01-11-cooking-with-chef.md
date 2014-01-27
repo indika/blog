@@ -345,7 +345,8 @@ Perhaps I need to increase the logging verbosity.
 # Databags
 
 Knife solo uploads cookbooks, roles and data bags onto the target node.
-This was not obvious to me at first. I assumed initially that it only sends instructions.
+This was not obvious to me at first asI assumed initially that it only sends instructions.
+Hence, sensitive data needs to be encrypted before being stored on the target node.
 
 Databags are annoying, yet they feel necessary. Debugging broken bags are slow. However, they seem important and my struggled attempt to justify them are as follows:
 
