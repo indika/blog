@@ -11,8 +11,10 @@ disqus: y
 
 
 
-Stasis is unstable. Chaos always seeps through. When a component falls into stasis, I'll let it be, and it'll carry on doing what it does.
-Until it breaks that is, and then development comes to a halt until it is fixed.
+Stasis is unstable. Chaos always seeps through.
+My web server was well configured, however, I was afraid to make any changes.
+It fell into stasis.
+It eventually broke, and development came to a halt until I fixed it.
 
 With Chef, you can declare your server architecture, and cook it as many times as you like. It operates idempotently. If you recook your server often, then you will not fall into stasis.
 
@@ -49,7 +51,7 @@ However, RVM works for me for now.
 I had to have some faith when installing RVM, granting curl root privileges:
 
 {% highlight bash %}
-\\curl -L https://get.rvm.io | bash -s stable --ruby
+\curl -L https://get.rvm.io | bash -s stable --ruby
     curl -L get.rvm.io | bash -s stable
 {% endhighlight %}
 
