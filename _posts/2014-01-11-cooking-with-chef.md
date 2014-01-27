@@ -49,7 +49,7 @@ However, RVM works for me for now.
 I had to have some faith when installing RVM, granting curl root privileges:
 
 {% highlight bash %}
-\curl -L https://get.rvm.io | bash -s stable --ruby
+\\curl -L https://get.rvm.io | bash -s stable --ruby
     curl -L get.rvm.io | bash -s stable
 {% endhighlight %}
 
