@@ -1,11 +1,12 @@
 ---
 layout: post
-title: Cooking a Web-Server with Chef-Solo
-description: "Cooking a Web-Server with Chef-Solo"
+title: Cooking a Web Server with Chef-Solo
+description: "Cooking a Web Server with Chef-Solo"
 modified: 2014-01-11
 tags: [chef, chef-solo, web server, devops]
 comments: false
 share: true
+disqus: y
 ---
 
 
