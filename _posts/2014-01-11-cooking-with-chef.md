@@ -439,7 +439,8 @@ I should also investigate into why Berkshelf is preferred over Librarian.
 
 <!-- LWRPs and understanding attribute precedence seem important. -->
 
-Recommended reading:
+Useful links:
 [Essential Cookbook Recipes](http://docs.opscode.com/essentials_cookbook_recipes.html)
+
 [Sample Kitchen](https://github.com/indika/kitchen)
 
