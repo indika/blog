@@ -441,4 +441,5 @@ I should also investigate into why Berkshelf is preferred over Librarian.
 
 Recommended reading:
 [Essential Cookbook Recipes](http://docs.opscode.com/essentials_cookbook_recipes.html)
+[Sample Kitchen](https://github.com/indika/kitchen)
 
