@@ -12,26 +12,25 @@ disqus: y
 
 
 Stasis is unstable. Chaos always seeps through.
-My web server was well configured, however, I was afraid to make any changes.
-It fell into stasis.
-It eventually broke, and development came to a halt until I fixed it.
+My web server was so well configured, that it left me in a position reluctant to make any changes.
+Thus, it fell into stasis.
+It eventually broke, and all development came to a halt until I fixed it.
 
-With Chef, you can declare your server architecture, and cook it as many times as you like. It operates idempotently. If you recook your server often, then you will not fall into stasis.
+With Chef, you can declare your server architecture, and cook it as many times as you like. It operates idempotently. Re-initializing and re-cooking your server often is the best counter against stasis.
 
 Learning to cook with Chef feels like learning a DSL.
 I despise learning DSLs because I'm learning a language that operates at a layer of abstraction above what I actually want to do. Nevertheless, I find cooking with Chef a necessity now and would not want to go back.
 
 If you are like me, and like to experiment, then often things can go fubar.
-It is comforting and encouraging to know that everything can be reconstructed in 15 minutes.
+It is comforting and encouraging to know that everything can be reconstructed in half an hour.
 
-
-
-
-# Concepts
-Cooking is simple. Chef offers a means of declaring a server architecture that is agnostic to the underlying platform.
 Despite being conceptually simple, getting started was the biggest obstacle I experienced - and hence the purpose behind this article.
 
-Chef was built to cook a farm of servers, with one server acting as the master.
+
+# Chef and Knife
+Chef offers a means of declaring a server architecture that is agnostic to the underlying platform.
+
+Its original intention is to cook a farm of servers, with one server acting as the master.
 Chef-Solo differs in the way that it does not need a dedicated Chef Server.
 There are a few quirks between full-blown Chef and Chef-Solo.
 
