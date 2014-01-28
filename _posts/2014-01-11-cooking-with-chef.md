@@ -106,7 +106,7 @@ Create a directory for your kitchen.
 
 ### Bundler and the Gemfile
 
-Use a Gemfile to specify the dependencies for Chef.
+The Ruby library dependencies for Chef are specified in a Gemfile.
 
 
 {% highlight ruby %}
@@ -264,7 +264,7 @@ scp -P 2222 ~/.chef/motion_secret root@motion:/root/.chef/motion_secret
 
 A particular node on your server farm is defined by .json file. I believe that the file must have the same name as its alias in your /etc/hosts. This is a good place to start interrogating Chef.
 
-It appears to be an collection of attributes - data that is specific to the node. The most pertinent attribute is the run list. The run list is where the action happens - it contains a list of recipes that will be applied. The order of which recipes appear in the run_list is preserved during the cook.
+It appears to be a collection of attributes - data that is specific to the node. The most pertinent attribute is the run list. The run list is where the action happens - it contains a list of recipes that will be applied. The order of which recipes appear in the run_list is preserved during the cook.
 
 
 # Structure of a Cookbook
@@ -343,7 +343,7 @@ Perhaps I need to increase the logging verbosity.
 
 # Databags
 
-Knife solo uploads cookbooks, roles and data bags onto the target node.
+Knife-solo uploads cookbooks, roles and data bags onto the target node.
 This was not obvious to me at first asI assumed initially that it only sends instructions.
 Hence, sensitive data needs to be encrypted before being stored on the target node.
 
@@ -387,7 +387,7 @@ knife solo data bag create indika mybag
 {% endhighlight %}
 
 
-This command, takes a secret file, a path to place the bag, a preferred text editor and a source bag. Notice how this creates the data bag structure for me.
+This command takes a secret file, the path to place the bag, a preferred text editor and a source bag. Notice how this creates the data bag structure for me.
 
 
 {% highlight json %}
