@@ -13,8 +13,8 @@ disqus: y
 
 Stasis is unstable. Chaos always seeps through.
 My web server was so well configured, that it left me in a position reluctant to make any changes.
-Thus, it fell into stasis.
-It eventually broke, and all development came to a halt until I fixed it.
+Thus, this component fell into stasis.
+It eventually broke, and all development came to a halt, until it was resolved.
 
 With Chef, you can declare your server architecture, and cook it as many times as you like. It operates idempotently. Re-initializing and re-cooking your server often is the best counter against stasis.
 
