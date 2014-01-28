@@ -27,7 +27,7 @@ It is comforting and encouraging to know that everything can be reconstructed in
 Despite being conceptually simple, getting started was the biggest obstacle I experienced - and hence the purpose behind this article.
 
 
-# Chef and Knife
+## Chef and Knife
 Chef offers a means of declaring a server architecture that is agnostic to the underlying platform.
 
 Its original intention is to cook a farm of servers, with one server acting as the master.
@@ -43,7 +43,7 @@ In addition, before the target node can be cooked, it needs to be prepared by Kn
 
 
 
-# Ruby
+## Ruby
 You will need Ruby to cook with Chef. RVM is a means to manage different versions of Ruby.
 RVM has been criticised for achieving too much, and that RBEnv is more focussed.
 However, RVM works for me for now.
@@ -75,11 +75,11 @@ Now that the Ruby dependencies have been set up, we are ready to create a kitche
 
 
 
-# Creating a Kitchen
+## Creating a Kitchen
 
 The kitchen is the structure you create on the client side before you cook your server.
 
-## ~/.chef
+### ~/.chef
 
 This is the default location where Knife looks for machine specific settings.
 This folder is not on the server, as I initially imagined. This is my *knife.rb* configuration file.
@@ -100,11 +100,11 @@ encrypted_data_bag_secret "#{ENV['HOME']}/.chef/motion_secret"
 My guess is that this file might be necessary for knife solo, because Chef was built to run on its own dedicated server.
 
 
-## A workspace for the Kitchen
+### A workspace for the Kitchen
 
 Create a directory for your kitchen.
 
-### Bundler and the Gemfile
+#### Bundler and the Gemfile
 
 The Ruby library dependencies for Chef are specified in a Gemfile.
 
@@ -133,7 +133,7 @@ It also obtains the gems required by the required gems, and so forth.
 It simply just works.
 
 
-### Scaffolding
+#### Scaffolding
 
 
 Choose a directory and use Knife to create a scaffolding.
@@ -162,7 +162,7 @@ The scaffolding of your kitchen should look like:
 {% endhighlight %}
 
 
-### Librarian-Chef and the Cheffile
+#### Librarian-Chef and the Cheffile
 
 Cookbooks contain recipes that instruct Chef how to do stuff.
 One of the reasons Chef appeals to me the most is because of the wealth of open source cookbooks available.
@@ -210,12 +210,12 @@ librarian-chef install --clean
 
 
 
-### Solo.rb
+#### Solo.rb
 This seems to be deprecated, since knife-solo v0.3.0.
 
 
 
-# Bootstrapping the Server
+## Bootstrapping the Server
 
 Before you can cook your server, it has to be prepared for cooking.
 In an ideal world, Chef can and will completely determine the architecture of the server. However, when it comes to practicalities, the server still needs to be bootstrapped before it can be cooked. It broadly involves:
@@ -225,7 +225,7 @@ In an ideal world, Chef can and will completely determine the architecture of th
 - the existence of Chef specific libraries.
 - the existence of the secret file to decrypt data bags (more on this later)
 
-## Configuring SSH
+### Configuring SSH
 
 SSH is pretty much the standard when it comes to opening a secure communication channel with a server. I'll assume you know how to set it up.
 
@@ -234,7 +234,7 @@ There has been a recent debate on whether it is [a bad idea](http://www.adayinth
 to use a non-default port. I prefer to use a non-default port because I cannot deal with the noise of random hackers.
 
 
-## Remotely installing Chef
+### Remotely installing Chef
 
 
 {% highlight bash %}
@@ -247,7 +247,7 @@ knife solo prepare root@motion -p 2222
 This installs Ruby, RubyGems and Chef on target machine. Chef needs to be installed on the server
 
 
-## Create a secret file and SCP it
+### Create a secret file and SCP it
 
 Vulnerable pieces should be encrypted. More about this later. For now, simply generate a secret key and upload it via SCP.
 
@@ -260,7 +260,7 @@ scp -P 2222 ~/.chef/motion_secret root@motion:/root/.chef/motion_secret
 
 
 
-# Nodes
+## Nodes
 
 A particular node on your server farm is defined by .json file. I believe that the file must have the same name as its alias in your /etc/hosts. This is a good place to start interrogating Chef.
 
@@ -268,7 +268,7 @@ It appears to be a collection of attributes - data that is specific to the node.
 
 
 
-# Creating your own Cookbook
+## Creating your own Cookbook
 
 Create a cookbook
 
@@ -305,7 +305,7 @@ entity
 
 
 
-## Cookbook Dependencies
+### Cookbook Dependencies
 
 According to the official documentation:
  *Declaring cookbook dependencies is not required with chef-solo.*
@@ -327,7 +327,7 @@ There are two types of dependency statements:
 
 
 
-<!-- ## Logging
+<!-- ### Logging
 
 The warning logging works for me, but not the other ones.
 
@@ -340,7 +340,7 @@ Perhaps I need to increase the logging verbosity.
 
 
 
-# Databags
+## Databags
 
 Knife-solo uploads cookbooks, roles and data bags onto the target node.
 This was not obvious to me at first asI assumed initially that it only sends instructions.
@@ -361,7 +361,7 @@ An annoying point to bear in mind is, the id of the data bag must match the name
 
 
 
-## Encryption Keys
+### Encryption Keys
 
 Use openssl to generate an encryption key.
 
@@ -421,14 +421,14 @@ end
 
 
 
-# Roles
+## Roles
 
 Roles are a means of applying common functionality to multiple nodes.
 I am only cooking one node, so roles can be ignored for now.
 However, I should note that the Roles can be defined using JSON or the Ruby DSL.
 
 
-# Cooking
+## Cooking
 
 Finally, once the kitchen has been created, and the target node has been prepared, it is ready to be cooked.
 
@@ -441,7 +441,7 @@ knife solo cook username@host
 All the recipes in the runlist will be cooked in the order provided. It is unlikely that your first cook will be successful. However, every subsequent correction takes you further in building a stable web server - one which is not subjected to stasis.
 
 
-# Next
+## Next
 
 Chef is not the only framework cooking a server. Puppet, Ansible and Salt exist.
 Soon I will investigate into why Berkshelf is preferred over Librarian.
