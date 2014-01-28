@@ -57,7 +57,7 @@ I had to have some faith when installing RVM, granting curl root privileges:
 The root privileges are required to make changes to openssl. Should I not be a bit more paranoid here?
 
 
-After you have installed it, you have to source it.
+After it is installed, it has to be activated.
 
 {% highlight bash %}
 source /Users/indika/.rvm/scripts/rvm
@@ -81,7 +81,7 @@ The kitchen is the structure you create on the client side before you cook your 
 
 ## ~/.chef
 
-This is the default location where Chef / Knife (?) looks for machine specific settings.
+This is the default location where Knife looks for machine specific settings.
 This folder is not on the server, as I initially imagined. This is my *knife.rb* configuration file.
 
 {% highlight ruby %}
@@ -97,7 +97,7 @@ encrypted_data_bag_secret "#{ENV['HOME']}/.chef/motion_secret"
 {% endhighlight %}
 
 
-This file might be necessary for knife solo because Chef was built to run on its own dedicated server.
+My guess is that this file might be necessary for knife solo, because Chef was built to run on its own dedicated server.
 
 
 ## A workspace for the Kitchen
@@ -142,7 +142,7 @@ Choose a directory and use Knife to create a scaffolding.
 knife solo init .
 {% endhighlight %}
 
-Your kitchen should look like:
+The scaffolding of your kitchen should look like:
 
 
 {% highlight text %}
@@ -173,10 +173,7 @@ I've noticed three different managers for cookbooks:
 * Berkshelf
 * knife-github-cookbooks
 
-I started with Librarian-Chef and currently see no good reason to change.
-
-Create the scaffolding for a Cheffile
-
+I started with Librarian-Chef and currently see no good reason to change. Use Librarian-Chef to initialise a Cheffile
 
 {% highlight bash %}
 librarian-chef init
@@ -220,7 +217,7 @@ This seems to be deprecated, since knife-solo v0.3.0.
 
 # Bootstrapping the Server
 
-Before you can cook your server, it has to be ready for cooking.
+Before you can cook your server, it has to be prepared for cooking.
 In an ideal world, Chef can and will completely determine the architecture of the server. However, when it comes to practicalities, the server still needs to be bootstrapped before it can be cooked. It broadly involves:
 
 - setting up a SSH connection, so that you (meaning the software running on your computer) can securely communicate with it, and
@@ -431,6 +428,18 @@ Roles are a means of applying common functionality to multiple nodes.
 I am only cooking one node, so roles can be ignored for now.
 However, I should note that the Roles can be defined using JSON or the Ruby DSL.
 
+
+# Cooking
+
+Finally, once the kitchen has been created, and the target node has been prepared, it is ready to be cooked.
+
+{% highlight bash %}
+
+knife solo cook username@host
+
+{% endhighlight %}
+
+All the recipes in the runlist will be cooked in the order provided. It is unlikely that your first cook will be successful. However, every subsequent correction takes you further in building a stable web server - one which is not subjected to stasis.
 
 
 # Next
