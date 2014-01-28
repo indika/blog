@@ -267,9 +267,8 @@ A particular node on your server farm is defined by .json file. I believe that t
 It appears to be a collection of attributes - data that is specific to the node. The most pertinent attribute is the run list. The run list is where the action happens - it contains a list of recipes that will be applied. The order of which recipes appear in the run_list is preserved during the cook.
 
 
-# Structure of a Cookbook
 
-## Creating a Cookbook
+# Creating your own Cookbook
 
 Create a cookbook
 
