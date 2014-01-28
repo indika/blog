@@ -32,7 +32,7 @@ Chef offers a means of declaring a server architecture that is agnostic to the u
 
 Its original intention is to cook a farm of servers, with one server acting as the master.
 Chef-Solo differs in the way that it does not need a dedicated Chef Server.
-There are a few quirks between full-blown Chef and Chef-Solo.
+One of the quirks between full-blown Chef and Chef-Solo is that configuration files have to be present on your local machine.
 
 Knife is a tool. This part is clear from the metaphor.
 Intuitively, I thought that knife was a tool used by Chef to perform the cook.
@@ -120,7 +120,7 @@ gem 'foodcritic'
 {% endhighlight %}
 
 
-So then use Bundler to obtain these dependencies.
+Bundler is used to obtain these dependencies.
 
 
 {% highlight bash %}
@@ -374,7 +374,7 @@ openssl rand -base64 512
 
 
 
-So use this key to encrypt the data bag.
+Use this key to encrypt the data bag.
 
 {% highlight bash %}
 
@@ -445,7 +445,7 @@ All the recipes in the runlist will be cooked in the order provided. It is unlik
 # Next
 
 Chef is not the only framework cooking a server. Puppet, Ansible and Salt exist.
-I should also investigate into why Berkshelf is preferred over Librarian.
+Soon I will investigate into why Berkshelf is preferred over Librarian.
 
 <!-- LWRPs and understanding attribute precedence seem important. -->
 
