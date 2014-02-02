@@ -22,7 +22,7 @@ Learning to cook with Chef feels like learning a DSL.
 I despise learning DSLs because I'm learning a language that operates at a layer of abstraction above what I actually want to do. Nevertheless, I find cooking with Chef a necessity now and would not want to go back.
 
 If you are like me, and like to experiment, then often things can go fubar.
-It is comforting and encouraging to know that everything can be reconstructed in half an hour.
+It is comforting and encouraging knowing that everything can be reconstructed in half an hour.
 
 Despite being conceptually simple, getting started was the biggest obstacle I experienced - and hence the purpose behind this article.
 
