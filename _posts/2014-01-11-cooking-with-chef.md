@@ -423,8 +423,33 @@ end
 # Roles
 
 Roles are a means of applying common functionality to multiple nodes.
-I am only cooking one node, so roles can be ignored for now.
-However, I should note that the Roles can be defined using JSON or the Ruby DSL.
+I safely ignored roles for a long time since I was cooking a single node, until I needed to cook logstash.
+
+So, how do I create a role?
+Create a role file in the roles folder.
+
+The name of the role is logstash_server.
+So the name of the role file is logstash_server.rb
+
+The role file has an identifier, a runlist, default and override attributes.
+
+Roles can be defined using JSON or the Ruby DSL.
+
+I am going to add a recipe to this role, particularly logstash::server
+
+Now how do I apply this role to a node?
+and finally, JSON data passed to chef-solo:
+
+The role can then be applied to the node by adding it to the run list
+
+{% highlight json %}
+
+{ "run_list": "role[logstash_server]" }
+
+{% endhighlight %}
+
+Roles are assigned to recipes.
+I need to assign the newly created role to the recipe logstash::server
 
 
 # Cooking
