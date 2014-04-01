@@ -9,9 +9,9 @@ share: true
 disqus: y
 ---
 
-Programs are written, not configured. Infrastructure is configured, not written. While both is a means to construct, the one is more fine grained, and the other is more immutable. There are a bunch of different solutions within the grey.
+Programs are written, not configured. Infrastructure is configured, not written. While both is a means to construct, the one is more fine grained, and the other is more immutable. There are many different solutions within this grey.
 
-Chef is developed by Opscode, initially developed by Adam. It was written in Ruby, but recently since Chef 11, the core was re-written in Erlang, and called ErChef. Erlang is a good language to handle scalability issues. It has been criticized for not having a good web UI.
+Chef is developed by Opscode, initially developed by Adam Jacob. Initially it was written purely in Ruby, but a year ago since Chef 11, the core was re-written in Erlang, and called ErChef. Erlang is a good language to handle scalability issues. It has been criticized for not having a good web UI. The biggest user of Chef is Facebook.
 
 Puppet is developed by Puppet Labs, initially by Luke Kanies. It too is written in Ruby. It has some big players behind it. The code is simpler, and offers a Ruby DSL as well now.
 
