@@ -9,13 +9,7 @@ share: true
 disqus: y
 ---
 
-One typically does not configure a program. One writes a program. The distinction is that you have greater control over the granularity of what you are creating.
-
-When it comes to configuration, you meet something immutable. It may be immutable because it is constraint, or you trust it and don't want to change it's behaivour.
-
-
-What are some of the solutions available?
-
+Programs are written, not configured. Infrastructure is configured, not written. While both is a means to construct, the one is more fine grained, and the other is more immutable. There are a bunch of different solutions within the grey.
 
 Chef is developed by Opscode, initially developed by Adam. It was written in Ruby, but recently since Chef 11, the core was re-written in Erlang, and called ErChef. Erlang is a good language to handle scalability issues. It has been criticized for not having a good web UI.
 
