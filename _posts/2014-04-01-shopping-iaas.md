@@ -35,7 +35,7 @@ OpenShift sits on top of OpenStack, and is written in Ruby. The well connected o
 This solution feels less flexible, but it is a turn-key one.
 
 
-
+VMWare has backed Puppet, but both can integrate with VMWare products.
 
 
 
