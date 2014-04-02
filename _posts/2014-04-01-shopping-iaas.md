@@ -9,7 +9,7 @@ share: true
 disqus: y
 ---
 
-Programs are written, not configured. Infrastructure is configured, not written. While both is a means to construct, the one is more fine grained, and the other is more immutable. There are many different solutions within this grey.
+Programs are written, not configured. Infrastructure is configured, not written. While both is a means to construct, the one is more fine grained, and the other is more immutable. There are many different solutions within this grey. This grey is about ease versus control.
 
 First, there was, CFEngine.
 
@@ -27,7 +27,7 @@ Boxen is a toolchain built to provision Mac's, and it uses Puppet. It has been c
 
 Salt and Ansible exist. Both are written in Python.
 
-Salt configurations are written in YAML, and the execution is imperative, and not declarative. I'm postulation that the advantage is that you have fine "grain" control. Resolves some issue about orchestration.
+Salt configurations are written in YAML, and the execution is imperative, and not declarative. I'm postulation that the advantage is that you have fine "grain" control. Resolves some issue about orchestration. Salt uses ZeroMQ to send messages. And has a very "free" philosophy - not paid hosting plans.
 
 Ansible is a lot more lightweigtht. Ansible remotely copies and executes generated Python scripts directly on the managed instances using SSH. Therefore, the only requirements for managing instances with Ansible are Python and SSH.
 
