@@ -11,9 +11,11 @@ disqus: y
 
 Programs are written, not configured. Infrastructure is configured, not written. While both is a means to construct, the one is more fine grained, and the other is more immutable. There are many different solutions within this grey. This grey is about ease versus control.
 
+I've been shopping for solutions to code my infrastructure.
+
 First, there was, CFEngine.
 
-Chef is developed by Opscode, initially developed by Adam Jacob. Initially it was written purely in Ruby, but a year ago since Chef 11, the core was re-written in Erlang, and called ErChef. Erlang is a good language to handle scalability issues. It has been criticized for not having a good web UI. The biggest user of Chef is Facebook.
+Chef is developed by Opscode, initially developed by Adam Jacob. Initially it was written purely in Ruby, but a year ago since Chef 11, the core was re-written in Erlang, and called ErChef. Erlang is a good environment to handle concurrency. Chef has been criticized for not having a good web UI. The most well known user of Chef is Facebook.
 
 Puppet is developed by Puppet Labs, initially by Luke Kanies. It is about 9 years old since inception. It too is written in Ruby. It has some big players behind it. Initially it offered a simple DSL to write the configuration, and now the configurations can be written in Ruby as well.
 
@@ -36,6 +38,8 @@ OpenStack is an IaaS, with the mission of enabling any organisation to create an
 OpenShift can sit on top of OpenStack nicely, and is written in Ruby. The well connected of the two, can help magical autoscaling.
 
 CloudForms sits on top of both of these, and help manage heterogenous cloud architectures. This solution feels less flexible, but it is a turn-key one. OpenShift over OpenStack is advocated by RedHat.
+
+The space seems large enough to not just have one clear winner. Each solution might be tairored for a different target market. Puppet and Chef seem to do very similar things. If you have a bunch of hardware, and you want to configure it, then perhaps Puppet is better for you. If you are a developer, and want to extend your reach, then perhaps Chef is better for you. If you are a big corporate and you want a cloud based solution, then perhaps OpenShift over OpenStack is better for you.
 
 
 
