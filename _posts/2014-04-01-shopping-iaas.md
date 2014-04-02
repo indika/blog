@@ -11,9 +11,9 @@ disqus: y
 
 Programs are written, not configured. Infrastructure is configured, not written. While both is a means to construct, the one is more fine grained, and the other is more immutable. There are many different solutions within this grey. This grey is about ease versus control.
 
-I've been shopping for solutions to code my infrastructure.
+I've been shopping for solutions to code my infrastructure. This is important to me because I do not like stasis. Stasis is where something is so well configured, that you do not want to make changes.
 
-First, there was, CFEngine.
+First, there was, CFEngine. I'm not really considering it at all - just haven't heard people buzzing about it. It's written in C, and has a low memory footprint. Apparently it has a steep learning curve.
 
 Puppet is developed by Puppet Labs, initially by Luke Kanies. It is about 9 years old since inception. It too is written in Ruby. It has some big players behind it. Initially it offered a simple DSL to write the configuration, and now the configurations can be written in Ruby as well.
 
@@ -21,9 +21,7 @@ Chef is developed by Opscode, initially developed by Adam Jacob. Initially it wa
 
 The basic idea is that the agent node sniffs out the configuration on the target node, and sends this information back to the master, which then decides what to do.
 
-Both Chef and Puppet have been funded between $30-40mil. Google, Cisco System and VMWare, amongst others have backed Puppet. With the extra money, both have started to provision Windows based machines.
-
-VMWare has backed Puppet, but both can integrate with VMWare products. Puppet and Chef have support for a variety of hardware.
+Both Chef and Puppet have been funded between $30-40mil. Google, Cisco System and VMWare, amongst others have backed Puppet. With the extra money, both have started to provision Windows based machines. VMWare has backed Puppet, but both can integrate with VMWare products. Puppet and Chef have support for a variety of hardware.
 
 Boxen is a toolchain built to provision Mac's, and it uses Puppet. It has been criticized that it uses non-default homebrew locations.
 
