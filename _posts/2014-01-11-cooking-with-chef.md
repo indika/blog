@@ -18,9 +18,6 @@ It eventually broke, and all development came to a halt, until it was resolved.
 
 With Chef, you can declare your server architecture, and cook it as many times as you like. It operates idempotently. Re-initializing and re-cooking your server often is the best counter against stasis.
 
-Learning to cook with Chef feels like learning a DSL.
-I despise learning DSLs because I'm learning a language that operates at a layer of abstraction above what I actually want to do. Nevertheless, I find cooking with Chef a necessity now and would not want to go back.
-
 If you are like me, and like to experiment, then often things can go fubar.
 It is comforting and encouraging knowing that everything can be reconstructed in half an hour.
 
