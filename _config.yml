@@ -1,0 +1,24 @@
+title:            HydraSquared
+description:      Another blog in the corner of the Internet.
+url:              http://hydrasquared.com
+signoff:          Indika
+disqus_shortname: hydrasquared
+facebook_appid:   # appid for like button, remove from /_includes/share.html if unwanted.
+google_analytics: UA-45186369-1
+
+links:
+  - name:         About
+    url:          /about
+  - name:         Email
+    url:          mailto:you.know.how.to.contact.me
+    external:     true
+  - name:         GitHub
+    url:          http://github.com/indika
+    external:     true
+highlighter:      true
+permalink:        pretty
+markdown:         rdiscount
+rdiscount:
+  extensions:     [smart]
+
+exclude: ["sync_local.sh", "lib", "config.rb", "Capfile", "config", "log", "Rakefile", "Rakefile.rb", "tmp", "less", "*.sublime-project", "*.sublime-workspace", "test", "spec", "Gruntfile.js", "package.json", "node_modules"]
